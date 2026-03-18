@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Scholar Portal - Smart Academic Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Navigation Bar -->
+    <div class="navbar-top">
+        <button class="hamburger-btn" onclick="toggleSideMenu()" title="Open menu" aria-label="Open navigation menu">☰</button>
+        <div style="flex: 1;"></div>
+        <button class="theme-toggle" onclick="toggleDarkMode()" title="Toggle dark mode">🌙 Dark Mode</button>
+        <button class="lang-toggle" onclick="toggleLanguage()" title="Change language">हिंदी</button>
+    </div>
+
+    <!-- Side Navigation Menu -->
+    <div id="sideMenu" class="side-menu">
+        <button class="close-menu-btn" onclick="toggleSideMenu()" title="Close menu" aria-label="Close menu">✕</button>
+        <nav class="side-nav">
+            <a href="index.html" class="side-nav-link" onclick="toggleSideMenu()">🏠 Home</a>
+            <div class="side-nav-section">
+                <span class="side-nav-title">📚 Departments</span>
+                <a href="department.html" class="side-nav-link side-nav-sub" onclick="toggleSideMenu()">💻 Computer Science</a>
+                <a href="mathematics.html" class="side-nav-link side-nav-sub" onclick="toggleSideMenu()">🧮 Mathematics</a>
+            </div>
+            <a href="faculty.html" class="side-nav-link" onclick="toggleSideMenu()">👨‍🏫 Faculty</a>
+            <a href="student.html" class="side-nav-link" onclick="toggleSideMenu()">🎓 Students</a>
+            <a href="research.html" class="side-nav-link" onclick="toggleSideMenu()">🔬 Research (Public)</a>
+            <a href="research_portal.html" id="researchLink" class="side-nav-link" style="display:none;" onclick="toggleSideMenu()">🔬 Research Portal</a>
+            <a href="calendar.html" class="side-nav-link" onclick="toggleSideMenu()">📅 Academic Calendar</a>
+            <a href="notices.html" class="side-nav-link" onclick="toggleSideMenu()">📢 Notices</a>
+            <a href="admin.html" class="side-nav-link" onclick="toggleSideMenu()">🏛️ Administration</a>
+            <!-- authentication links -->
+            <a href="login.html" id="loginLink" class="side-nav-link" onclick="toggleSideMenu()">
+                <span class="card-emoji">🔒</span> <span data-i18n="login">Login</span>
+            </a>
+            <a href="javascript:logoutUser()" id="logoutLink" class="side-nav-link" style="display:none;">
+                <span class="card-emoji">🔓</span> <span data-i18n="logout">Logout</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Side Menu Overlay -->
+    <div id="sideMenuOverlay" class="side-menu-overlay" onclick="toggleSideMenu()"></div>
+
+    <!-- Department Hero Section -->
+    <div class="department-hero">
+        <a href="index.html">
+            <img src="images/logo-new3.png" class="header-logo">
+        </a>
+        <h1>🔬 Research Scholar Portal</h1>
+        <p>Central University of South Bihar</p>
+        <p style="margin-top: 10px; font-size: 0.95rem;">PhD Computer Science Program - Projects, Publications & Funding</p>
+    </div>
+
+    <div id="greeting" style="text-align:right; padding: 0 20px; font-size:0.9rem;"></div>
+
+    <!-- Smart Search -->
+    <div class="search">
+        <input 
+            type="text" 
+            id="searchBox" 
+            placeholder="Search notices, syllabus, faculty..."
+            aria-label="Search research portal"
+        >
+        <button onclick="smartSearch()">Search</button>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Quick Access -->
+        <section class="dashboard-section">
+            <div class="section-title" data-i18n="quick_access">📌 Quick Access</div>
+            <div class="roles">
+                <a href="#profile" class="card" title="View profile">
+                    <span class="card-emoji">👤</span>
+                    <span class="card-title" data-i18n="profile">Profile</span>
+                    <span class="card-description">Your information</span>
+                </a>
+
+                <a href="#supervisor" class="card" title="Supervisor info">
+                    <span class="card-emoji">👨‍🏫</span>
+                    <span class="card-title" data-i18n="supervisors">Supervisor</span>
+                    <span class="card-description">Guide & mentor</span>
+                </a>
+
+                <a href="#projects" class="card" title="Research projects">
+                    <span class="card-emoji">📋</span>
+                    <span class="card-title" data-i18n="projects">Projects</span>
+                    <span class="card-description">Ongoing & completed</span>
+                </a>
+
+                <a href="#publications" class="card" title="Publications">
+                    <span class="card-emoji">📄</span>
+                    <span class="card-title" data-i18n="publications">Publications</span>
+                    <span class="card-description">Papers & articles</span>
+                </a>
+
+                <a href="#conferences" class="card" title="Conferences">
+                    <span class="card-emoji">🎤</span>
+                    <span class="card-title">Conferences</span>
+                    <span class="card-description">Events & seminars</span>
+                </a>
+
+                <a href="#funding" class="card" title="Funding">
+                    <span class="card-emoji">💰</span>
+                    <span class="card-title">Funding Info</span>
+                    <span class="card-description">Grants & scholarships</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Researcher Profile -->
+        <section class="dashboard-section" id="profile">
+            <div class="section-title">👤 Researcher Profile</div>
+            <div class="faculty-grid" style="max-width: 600px;">
+                <div class="faculty-card">
+                    <div class="faculty-avatar">👩‍🎓</div>
+                    <div class="faculty-info">
+                        <div class="faculty-name">Priya Sharma</div>
+                        <div class="faculty-designation">PhD Scholar in Computer Science</div>
+                        <div class="faculty-subjects">
+                            <strong>Institution:</strong> Central University of South Bihar<br>
+                            <strong>Program:</strong> Ph.D. Computer Science<br>
+                            <strong>Duration:</strong> 2021 - 2026<br>
+                            <strong>Status:</strong> Final year<br>
+                            <strong>CGPA:</strong> 8.7/10<br>
+                            <strong>Email:</strong> priya.sharma@cusb.ac.in<br>
+                            <strong>Office:</strong> Research Lab-1, CS Building, CUSB Campus
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Supervisor Section -->
+        <section class="dashboard-section" id="supervisor">
+            <div class="section-title">👨‍🏫 Supervisor & Guidance</div>
+            <div class="faculty-grid" style="max-width: 600px;">
+                <div class="faculty-card">
+                    <div class="faculty-avatar">👨‍🎓</div>
+                    <div class="faculty-info">
+                        <div class="faculty-name">Dr. Rajesh Kumar</div>
+                        <div class="faculty-designation">Supervisor, Assistant Professor</div>
+                        <div class="faculty-subjects">
+                            <strong>Institution:</strong> Central University of South Bihar<br>
+                            <strong>Specialization:</strong> Data Structures & Algorithms<br>
+                            <strong>Experience:</strong> 12 years<br>
+                            <strong>PhD Scholars Mentoring:</strong> 3<br>
+                            <strong>Office:</strong> Room 301, CS Building<br>
+                            <strong>Email:</strong> r.kumar@cusb.ac.in<br>
+                            <strong>Office Hours:</strong> Mon, Wed 3-5 PM
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research Projects -->
+        <section class="dashboard-section" id="projects">
+            <div class="section-title">📋 Research Projects</div>
+            <div class="section-grid">
+                <div class="card-item">
+                    <div class="card-item-title">Optimizing Graph Algorithms for Large Scale Networks</div>
+                    <div class="card-item-content">
+                        <strong>Start Date:</strong> Jan 2024<br>
+                        <strong>Status:</strong> ✅ Ongoing<br>
+                        <strong>Funding:</strong> CSIR Grant (Rs. 3,00,000)<br>
+                        <strong>Progress:</strong> 65% Complete<br>
+                        <p style="margin-top: 10px; font-size: 0.9rem;">Developing efficient algorithms for graph processing in distributed systems...</p>
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Machine Learning based Data Structure Selection</div>
+                    <div class="card-item-content">
+                        <strong>Start Date:</strong> Jul 2022<br>
+                        <strong>Status:</strong> ✅ Completed<br>
+                        <strong>Funding:</strong> University Seed Grant<br>
+                        <strong>Progress:</strong> 100% Complete<br>
+                        <p style="margin-top: 10px; font-size: 0.9rem;">Thesis submitted and under evaluation...</p>
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Real-time Stream Processing Framework</div>
+                    <div class="card-item-content">
+                        <strong>Start Date:</strong> Sep 2023<br>
+                        <strong>Status:</strong> ✅ Ongoing<br>
+                        <strong>Funding:</strong> Industry Collaboration<br>
+                        <strong>Progress:</strong> 40% Complete<br>
+                        <p style="margin-top: 10px; font-size: 0.9rem;">Collaboration with TCS Labs on real-time data processing...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publications -->
+        <section class="dashboard-section" id="publications">
+            <div class="section-title">📄 Publications & Research Work</div>
+            <div class="section-grid">
+                <div class="card-item">
+                    <div class="card-item-title">Journal Papers</div>
+                    <div class="card-item-content">
+                        <strong>2024:</strong> IEEE Transactions on Software Engineering<br>
+                        <em>"Efficient Graph Coloring in Distributed Systems"</em><br><br>
+                        <strong>2023:</strong> ACM Computing Surveys<br>
+                        <em>"A Survey on Algorithm Optimization Techniques"</em><br><br>
+                        <strong>Total:</strong> 5 published papers
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Conference Presentations</div>
+                    <div class="card-item-content">
+                        <strong>ICML 2024</strong> - New York<br>
+                        <em>"Deep Learning for Algorithm Selection"</em><br><br>
+                        <strong>ICDM 2023</strong> - Shanghai<br>
+                        <em>"Scalable Data Structure Design"</em><br><br>
+                        <strong>Total:</strong> 8 conference papers
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Preprints & ArXiv</div>
+                    <div class="card-item-content">
+                        <strong>Submitted:</strong> 2 papers to major conferences<br><br>
+                        <strong>ArXiv Papers:</strong> 3<br><br>
+                        <strong>Citations:</strong> 45 total citations<br>
+                        <strong>h-index:</strong> 4
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Upload Publication</div>
+                    <div class="card-item-content">
+                        <button class="btn-primary" style="margin-top: 10px; width: 100%;">Upload Paper</button>
+                        <button class="btn-primary" style="margin-top: 10px; width: 100%;">Add Citation</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conferences & Seminars -->
+        <section class="dashboard-section" id="conferences">
+            <div class="section-title">🎤 Conferences & Seminars</div>
+            <div class="section-grid">
+                <div class="card-item">
+                    <div class="card-item-title">Upcoming: SIGMOD 2026</div>
+                    <div class="card-item-content">
+                        <strong>Date:</strong> 15-21 June 2026<br>
+                        <strong>Location:</strong> Vancouver, Canada<br>
+                        <strong>Status:</strong> 🔵 Accepted<br>
+                        <strong>Paper:</strong> "Distributed Graph Processing"<br>
+                        <button class="btn-primary" style="margin-top: 10px; width: 100%;">View Details</button>
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">VLDB 2025</div>
+                    <div class="card-item-content">
+                        <strong>Date:</strong> 28 Aug - 1 Sep 2025<br>
+                        <strong>Location:</strong> Barcelona, Spain<br>
+                        <strong>Status:</strong> ✅ Attended<br>
+                        <strong>Paper:</strong> "Index Structures for Big Data"<br>
+                        <span style="color: #27ae60; font-weight: bold;">Awarded Best Paper</span>
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Department Seminar</div>
+                    <div class="card-item-content">
+                        <strong>Frequency:</strong> Monthly on Fridays<br>
+                        <strong>Time:</strong> 4:00 PM - 5:00 PM<br>
+                        <strong>Location:</strong> Seminar Hall<br>
+                        <strong>Next Session:</strong> 1 March 2026<br>
+                        <button class="btn-primary" style="margin-top: 10px; width: 100%;">Register</button>
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Research Workshops</div>
+                    <div class="card-item-content">
+                        <strong>Advanced Python:</strong> 10 Mar<br>
+                        <strong>Graph Databases:</strong> 17 Mar<br>
+                        <strong>Data Visualization:</strong> 24 Mar<br>
+                        <button class="btn-primary" style="margin-top: 10px; width: 100%;">Browse All</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Funding & Scholarships -->
+        <section class="dashboard-section" id="funding">
+            <div class="section-title">💰 Funding & Scholarships</div>
+            <div class="section-grid">
+                <div class="card-item">
+                    <div class="card-item-title">Active Grants</div>
+                    <div class="card-item-content">
+                        <strong>CSIR Fellowship:</strong><br>
+                        Rs. 31,000/month (5 years)<br><br>
+                        <strong>Research Grant:</strong><br>
+                        Rs. 3,00,000 (Project Budget)<br><br>
+                        <strong>Total Monthly Support:</strong> Rs. 31,000
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Scholarships Received</div>
+                    <div class="card-item-content">
+                        <strong>2024:</strong> CSIR JRF Award<br>
+                        <strong>2023:</strong> Conference Travel Grant<br>
+                        <strong>2022:</strong> University Merit Scholarship<br>
+                        <strong>Total Scholarship:</strong> Rs. 8,50,000
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Financial Summary</div>
+                    <div class="card-item-content">
+                        <strong>Monthly Stipend:</strong> Rs. 31,000<br>
+                        <strong>Total Grant Year 1:</strong> Rs. 3,00,000<br>
+                        <strong>Conference Fund:</strong> Rs. 1,00,000 available<br>
+                        <strong>Spent YTD:</strong> Rs. 75,000
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Apply for Funding</div>
+                    <div class="card-item-content">
+                        <button class="btn-primary" style="margin-top: 10px; width: 100%; margin-bottom: 10px;">Conference Travel Grant</button>
+                        <button class="btn-primary" style="margin-top: 10px; width: 100%; margin-bottom: 10px;">Research Equipment Grant</button>
+                        <button class="btn-primary" style="margin-top: 10px; width: 100%;">Collaboration Fund</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Progress Tracking -->
+        <section class="dashboard-section">
+            <div class="section-title">📊 PhD Progress Tracking</div>
+            <div class="section-grid">
+                <div class="card-item">
+                    <div class="card-item-title">Coursework</div>
+                    <div class="card-item-content">
+                        <strong>Status:</strong> ✅ Completed<br>
+                        <strong>Courses:</strong> 6/6 completed<br>
+                        <strong>Cumulative Grade:</strong> A (8.7/10)<br>
+                        <strong>Completion:</strong> 100% ✓
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Comprehensive Exam</div>
+                    <div class="card-item-content">
+                        <strong>Status:</strong> ✅ Passed<br>
+                        <strong>Date:</strong> Jan 2024<br>
+                        <strong>Score:</strong> 85/100<br>
+                        <strong>Completion:</strong> 100% ✓
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Research & Publications</div>
+                    <div class="card-item-content">
+                        <strong>Status:</strong> ✅ In Progress<br>
+                        <strong>Papers Published:</strong> 5<br>
+                        <strong>Conferences:</strong> 8 attended<br>
+                        <strong>Completion:</strong> 70% ✓
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Dissertation</div>
+                    <div class="card-item-content">
+                        <strong>Status:</strong> ✅ Under Preparation<br>
+                        <strong>Expected Submission:</strong> June 2026<br>
+                        <strong>Expected Defense:</strong> Aug 2026<br>
+                        <strong>Completion:</strong> 85% ✓
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <p>&copy; 2026 Smart Academic Portal | Central University of South Bihar</p>
+        <p>For support, contact: department@cusb.ac.in | Phone: +91-631-2229 530</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        checkRole('research');
+    </script>
+</body>
+</html>

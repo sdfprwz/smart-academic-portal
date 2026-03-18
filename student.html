@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal - Smart Academic Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Navigation Bar -->
+    <div class="navbar-top">
+        <button class="hamburger-btn" onclick="toggleSideMenu()" title="Open menu" aria-label="Open navigation menu">☰</button>
+        <div style="flex: 1;"></div>
+        <button class="theme-toggle" onclick="toggleDarkMode()" title="Toggle dark mode">🌙 Dark Mode</button>
+        <button class="lang-toggle" onclick="toggleLanguage()" title="Change language">हिंदी</button>
+    </div>
+
+    <!-- Side Navigation Menu -->
+    <div id="sideMenu" class="side-menu">
+        <button class="close-menu-btn" onclick="toggleSideMenu()" title="Close menu" aria-label="Close menu">✕</button>
+        <nav class="side-nav">
+            <a href="index.html" class="side-nav-link" onclick="toggleSideMenu()">🏠 Home</a>
+            <div class="side-nav-section">
+                <span class="side-nav-title">📚 Departments</span>
+                <a href="department.html" class="side-nav-link side-nav-sub" onclick="toggleSideMenu()">💻 Computer Science</a>
+                <a href="mathematics.html" class="side-nav-link side-nav-sub" onclick="toggleSideMenu()">🧮 Mathematics</a>
+            </div>
+            <a href="faculty.html" class="side-nav-link" onclick="toggleSideMenu()">👨‍🏫 Faculty</a>
+            <a href="student.html" class="side-nav-link" onclick="toggleSideMenu()">🎓 Students</a>
+            <a href="research.html" class="side-nav-link" onclick="toggleSideMenu()">🔬 Research (Public)</a>
+            <a href="research_portal.html" id="researchLink" class="side-nav-link" style="display:none;" onclick="toggleSideMenu()">🔬 Research Portal</a>
+            <a href="calendar.html" class="side-nav-link" onclick="toggleSideMenu()">📅 Academic Calendar</a>
+            <a href="notices.html" class="side-nav-link" onclick="toggleSideMenu()">📢 Notices</a>
+            <a href="admin.html" class="side-nav-link" onclick="toggleSideMenu()">🏛️ Administration</a>
+            <!-- authentication links -->
+            <a href="login.html" id="loginLink" class="side-nav-link" onclick="toggleSideMenu()">
+                <span class="card-emoji">🔒</span> <span data-i18n="login">Login</span>
+            </a>
+            <a href="javascript:logoutUser()" id="logoutLink" class="side-nav-link" style="display:none;">
+                <span class="card-emoji">🔓</span> <span data-i18n="logout">Logout</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Side Menu Overlay -->
+    <div id="sideMenuOverlay" class="side-menu-overlay" onclick="toggleSideMenu()"></div>
+
+    <!-- Department Hero Section -->
+    <div class="department-hero">
+        <a href="index.html">
+            <img src="images/logo-new3.png" class="header-logo">
+        </a>
+        <h1>🎓 Student Portal</h1>
+        <p>Central University of South Bihar</p>
+        <p style="margin-top: 10px; font-size: 0.95rem;">M.Sc. Computer Science & AI Programs</p>
+    </div>
+
+    <div id="greeting" style="text-align:right; padding: 0 20px; font-size:0.9rem;"></div>
+
+    <!-- Smart Search -->
+    <div class="search">
+        <input 
+            type="text" 
+            id="searchBox" 
+            placeholder="Search notices, syllabus, faculty..."
+            aria-label="Search for academic resources"
+        >
+        <button onclick="smartSearch()">Search</button>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Quick Access -->
+        <section class="dashboard-section">
+            <div class="section-title" data-i18n="quick_access">📌 Quick Access</div>
+            <div class="roles">
+                <a href="notices.html" class="card" title="View notices">
+                    <span class="card-emoji">📢</span>
+                    <span class="card-title" data-i18n="important_notices">Important Notices</span>
+                    <span class="card-description">Exam, Results, Admissions</span>
+                </a>
+
+                <a href="calendar.html" class="card" title="View calendar">
+                    <span class="card-emoji">📅</span>
+                    <span class="card-title" data-i18n="calendar">Academic Calendar</span>
+                    <span class="card-description">Semester Dates & Events</span>
+                </a>
+
+                <a href="#syllabus" class="card" title="View syllabus">
+                    <span class="card-emoji">📚</span>
+                    <span class="card-title" data-i18n="syllabus">Syllabus</span>
+                    <span class="card-description">Semester-wise Courses</span>
+                </a>
+
+                <a href="#timetable" class="card" title="View timetable">
+                    <span class="card-emoji">⏰</span>
+                    <span class="card-title" data-i18n="timetable">Timetable & Labs</span>
+                    <span class="card-description">Class Schedule</span>
+                </a>
+
+                <a href="#downloads" class="card" title="Download resources">
+                    <span class="card-emoji">📥</span>
+                    <span class="card-title" data-i18n="exam_forms">Forms & Downloads</span>
+                    <span class="card-description">Admission, Exam Forms</span>
+                </a>
+
+                <a href="#results" class="card" title="View results">
+                    <span class="card-emoji">📊</span>
+                    <span class="card-title" data-i18n="results_marks">Results & Marks</span>
+                    <span class="card-description">Semester Performance</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Recent Notices -->
+        <section class="dashboard-section">
+            <div class="section-title" data-i18n="recent_notices">📢 Recent Notices</div>
+            <div id="notice-list"></div>
+        </section>
+
+        <!-- Syllabus Section -->
+        <section class="dashboard-section" id="syllabus">
+            <div class="section-title" data-i18n="syllabus">📚 Syllabus (M.Sc. Program)</div>
+            <div class="section-grid">
+                <div class="card-item">
+                    <div class="card-item-title">Semester 1: Core Foundations</div>
+                    <div class="card-item-content">
+                        <strong>Advanced Data Structures</strong><br>
+                        <strong>Database Management Systems</strong><br>
+                        <strong>Mathematics for CS</strong><br>
+                        <strong>Seminar/Elective</strong>
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Semester 2: Specializations</div>
+                    <div class="card-item-content">
+                        <strong>Computer Networks</strong><br>
+                        <strong>Machine Learning Fundamentals</strong><br>
+                        <strong>Operating Systems</strong><br>
+                        <strong>Elective Courses</strong>
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Semester 3: Advanced Topics</div>
+                    <div class="card-item-content">
+                        <strong>AI & Deep Learning</strong><br>
+                        <strong>Cybersecurity & Cryptography</strong><br>
+                        <strong>Distributed Systems</strong><br>
+                        <strong>Research Project-I</strong>
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Semester 4: Thesis & Specialization</div>
+                    <div class="card-item-content">
+                        <strong>Master's Thesis/Project</strong><br>
+                        <strong>Advanced Specialization</strong><br>
+                        <strong>Industry Internship</strong><br>
+                        <strong>8 weeks project (40 credits)</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timetable Section -->
+        <section class="timetable" id="timetable">
+            <h2 style="color: var(--primary-color); margin-bottom: 15px;">⏰ M.Sc. Semester 1-2 Timetable</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Monday</th>
+                        <th>Tuesday</th>
+                        <th>Wednesday</th>
+                        <th>Thursday</th>
+                        <th>Friday</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>09:00 - 10:30</strong></td>
+                        <td>Advanced Data Structures (Lab A)</td>
+                        <td>Database Management (Lab B)</td>
+                        <td>Computer Networks (Room 201)</td>
+                        <td>Advanced Data Structures (Lab A)</td>
+                        <td>Machine Learning (Room 301)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>10:30 - 11:00</strong></td>
+                        <td colspan="5" style="text-align: center;"><em>Break</em></td>
+                    </tr>
+                    <tr>
+                        <td><strong>11:00 - 12:30</strong></td>
+                        <td>OS/Systems (Room 205)</td>
+                        <td>Advanced Data Structures (Lab A)</td>
+                        <td>DBMS Lab (Lab B)</td>
+                        <td>Networks Lab (Room 301)</td>
+                        <td>ML Lab (Room A)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>12:30 - 01:30</strong></td>
+                        <td colspan="5" style="text-align: center;"><em>Lunch</em></td>
+                    </tr>
+                    <tr>
+                        <td><strong>01:30 - 03:00</strong></td>
+                        <td>Networks (Room 201)</td>
+                        <td>DBMS (Lab A)</td>
+                        <td>OS Lab (Lab B)</td>
+                        <td>Elective Course (Room 201)</td>
+                        <td>Algorithms Lab (Lab B)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Downloads Section -->
+        <section class="dashboard-section" id="downloads">
+            <div class="section-title">📥 Forms & Downloads</div>
+            <div class="section-grid">
+                <div class="card-item">
+                    <div class="card-item-title">Exam Form</div>
+                    <div class="card-item-content">
+                        📄 Semester Exam Form (PDF)<br>
+                        <button class="btn-primary" style="margin-top: 10px; width: 100%;">Download</button>
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Syllabus Documents</div>
+                    <div class="card-item-content">
+                        📚 Complete Syllabus (PDF)<br>
+                        <button class="btn-primary" style="margin-top: 10px; width: 100%;">Download</button>
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Lecture Notes</div>
+                    <div class="card-item-content">
+                        📝 All Lecture Notes (ZIP)<br>
+                        <button class="btn-primary" style="margin-top: 10px; width: 100%;">Download</button>
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Lab Manuals</div>
+                    <div class="card-item-content">
+                        🔬 Lab Manuals (PDF)<br>
+                        <button class="btn-primary" style="margin-top: 10px; width: 100%;">Download</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="dashboard-section" id="results">
+            <div class="section-title">📊 Academic Performance</div>
+            <div class="section-grid">
+                <div class="card-item">
+                    <div class="card-item-title">Semester 1 Results</div>
+                    <div class="card-item-content">
+                        <strong>CGPA: 8.7</strong><br>
+                        <strong>Status:</strong> Excellent<br>
+                        ✅ Results Declared (March 2026)
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Semester 2 (Current)</div>
+                    <div class="card-item-content">
+                        <strong>Classes:</strong> Ongoing<br>
+                        <strong>Exams:</strong> May-June 2026<br>
+                        📅 <a href="calendar.html" style="color: var(--secondary-color); text-decoration: none;">View Schedule</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Attendance Info -->
+        <section class="dashboard-section">
+            <div class="section-title">✅ Attendance</div>
+            <div class="section-grid">
+                <div class="card-item">
+                    <div class="card-item-title">Overall Attendance</div>
+                    <div class="card-item-content">
+                        <strong>88%</strong> Attendance<br>
+                        ✅ Above minimum requirement (85%)
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Important Notice</div>
+                    <div class="card-item-content">
+                        Maintain at least <strong>85% attendance</strong><br>
+                        in all courses for eligibility in exams.
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <p>&copy; 2026 Smart Academic Portal | Central University of South Bihar</p>
+        <p>For support, contact: admission@cusb.ac.in | Phone: +91-631-2229 530</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // enforce authentication
+        checkRole('student');
+        // Initialize student dashboard
+        initStudentDashboard();
+    </script>
+</body>
+</html>

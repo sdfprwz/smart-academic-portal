@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Calendar - Smart Academic Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Navigation Bar -->
+    <div class="navbar-top">
+        <button class="hamburger-btn" onclick="toggleSideMenu()" title="Open menu" aria-label="Open navigation menu">☰</button>
+        <div style="flex: 1;"></div>
+        <button class="theme-toggle" onclick="toggleDarkMode()" title="Toggle dark mode">🌙 Dark Mode</button>
+        <button class="lang-toggle" onclick="toggleLanguage()" title="Change language">हिंदी</button>
+    </div>
+
+    <!-- Side Navigation Menu -->
+    <div id="sideMenu" class="side-menu">
+        <button class="close-menu-btn" onclick="toggleSideMenu()" title="Close menu" aria-label="Close menu">✕</button>
+        <nav class="side-nav">
+            <a href="index.html" class="side-nav-link" onclick="toggleSideMenu()">🏠 Home</a>
+            <div class="side-nav-section">
+                <span class="side-nav-title">📚 Departments</span>
+                <a href="department.html" class="side-nav-link side-nav-sub" onclick="toggleSideMenu()">💻 Computer Science</a>
+                <a href="mathematics.html" class="side-nav-link side-nav-sub" onclick="toggleSideMenu()">🧮 Mathematics</a>
+            </div>
+            <a href="faculty.html" class="side-nav-link" onclick="toggleSideMenu()">👨‍🏫 Faculty</a>
+            <a href="student.html" class="side-nav-link" onclick="toggleSideMenu()">🎓 Students</a>
+            <a href="research.html" class="side-nav-link" onclick="toggleSideMenu()">🔬 Research (Public)</a>
+            <a href="research_portal.html" id="researchLink" class="side-nav-link" style="display:none;" onclick="toggleSideMenu()">🔬 Research Portal</a>
+            <a href="calendar.html" class="side-nav-link" onclick="toggleSideMenu()">📅 Academic Calendar</a>
+            <a href="notices.html" class="side-nav-link" onclick="toggleSideMenu()">📢 Notices</a>
+            <a href="admin.html" class="side-nav-link" onclick="toggleSideMenu()">🏛️ Administration</a>
+            <!-- authentication links -->
+            <a href="login.html" id="loginLink" class="side-nav-link" onclick="toggleSideMenu()">
+                <span class="card-emoji">🔒</span> <span data-i18n="login">Login</span>
+            </a>
+            <a href="javascript:logoutUser()" id="logoutLink" class="side-nav-link" style="display:none;">
+                <span class="card-emoji">🔓</span> <span data-i18n="logout">Logout</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Side Menu Overlay -->
+    <div id="sideMenuOverlay" class="side-menu-overlay" onclick="toggleSideMenu()"></div>
+
+    <!-- Department Hero Section -->
+    <div class="department-hero">
+        <a href="index.html">
+            <img src="images/logo-new3.png" class="header-logo">
+        </a>
+        <h1>📅 Academic Calendar</h1>
+        <p>Central University of South Bihar</p>
+        <p style="margin-top: 10px; font-size: 0.95rem;">Even Semester (January-June 2026) - UG & PG Programmes</p>
+    </div>
+
+    <!-- Smart Search -->
+    <div class="search">
+        <input 
+            type="text" 
+            id="searchBox" 
+            placeholder="Search notices, syllabus, faculty..."
+            aria-label="Search calendar events"
+        >
+        <button onclick="smartSearch()">Search</button>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Calendar Image -->
+        <section class="dashboard-section">
+            <img src="images/Calendar_2026_page-0001.jpg" alt="CUSB Academic Calendar 2026" style="width: 100%; max-height: 500px; object-fit: contain; border-radius: 8px; margin-bottom: 30px;">
+        </section>
+
+        <!-- Live Interactive Calendar -->
+        <section class="dashboard-section">
+            <div class="section-title">📅 Interactive Calendar 2026 (Jan - Jun)</div>
+            
+            <!-- Calendar View Toggle -->
+            <div style="display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;">
+                <button onclick="switchCalendarView('academic')" id="academicViewBtn" style="padding: 10px 20px; background: var(--primary-color); color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">📌 Academic Events</button>
+                <button onclick="switchCalendarView('working')" id="workingViewBtn" style="padding: 10px 20px; background: #e5d9f2; color: var(--primary-color); border: none; border-radius: 5px; cursor: pointer; font-weight: 600;">📅 Working Days</button>
+            </div>
+            
+            <!-- Calendar Navigation -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; gap: 15px; flex-wrap: wrap;">
+                <button onclick="previousMonth()" style="padding: 10px 20px; background: var(--primary-color); color: white; border: none; border-radius: 5px; cursor: pointer;">← Previous</button>
+                <h3 id="currentMonth" style="margin: 0; color: var(--primary-color); min-width: 150px; text-align: center;">January 2026</h3>
+                <button onclick="nextMonth()" style="padding: 10px 20px; background: var(--primary-color); color: white; border: none; border-radius: 5px; cursor: pointer;">Next →</button>
+            </div>
+
+            <!-- Calendar Grid -->
+            <div id="calendarContainer" style="background: var(--card-bg); border-radius: 10px; padding: 20px; box-shadow: 0 2px 8px var(--card-shadow);">
+                <!-- Days of week header -->
+                <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; margin-bottom: 10px;">
+                    <div style="text-align: center; font-weight: 700; color: var(--primary-color); padding: 10px;">Sun</div>
+                    <div style="text-align: center; font-weight: 700; color: var(--primary-color); padding: 10px;">Mon</div>
+                    <div style="text-align: center; font-weight: 700; color: var(--primary-color); padding: 10px;">Tue</div>
+                    <div style="text-align: center; font-weight: 700; color: var(--primary-color); padding: 10px;">Wed</div>
+                    <div style="text-align: center; font-weight: 700; color: var(--primary-color); padding: 10px;">Thu</div>
+                    <div style="text-align: center; font-weight: 700; color: var(--primary-color); padding: 10px;">Fri</div>
+                    <div style="text-align: center; font-weight: 700; color: var(--primary-color); padding: 10px;">Sat</div>
+                </div>
+
+                <!-- Calendar dates -->
+                <div id="daysGrid" style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px;">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Legend for Academic View -->
+            <div id="academicLegend" style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px; padding: 15px; background: var(--card-bg); border-radius: 8px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <div style="width: 20px; height: 20px; background: rgba(220, 38, 38, 0.2); border-left: 4px solid #DC2626; border-radius: 3px;"></div>
+                    <span><strong>Urgent</strong> - Deadlines</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <div style="width: 20px; height: 20px; background: rgba(249, 115, 22, 0.2); border-left: 4px solid #F97316; border-radius: 3px;"></div>
+                    <span><strong>Academic</strong> - Important Dates</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <div style="width: 20px; height: 20px; background: rgba(22, 163, 74, 0.2); border-left: 4px solid #16A34A; border-radius: 3px;"></div>
+                    <span><strong>Holiday</strong> - Vacation</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <div style="width: 20px; height: 20px; background: rgba(3, 105, 161, 0.2); border-left: 4px solid #0369A1; border-radius: 3px;"></div>
+                    <span><strong>Event</strong> - Activities</span>
+                </div>
+            </div>
+
+            <!-- Legend for Working Days View -->
+            <div id="workingLegend" style="display: none; gap: 20px; flex-wrap: wrap; margin-top: 20px; padding: 15px; background: var(--card-bg); border-radius: 8px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <div style="width: 20px; height: 20px; background: rgba(22, 163, 74, 0.3); border: 2px solid #16A34A; border-radius: 3px;"></div>
+                    <span><strong>Working Day</strong> - Regular Classes</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <div style="width: 20px; height: 20px; background: rgba(200, 200, 200, 0.3); border: 2px solid #999; border-radius: 3px;"></div>
+                    <span><strong>Weekend</strong> - No Classes</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <div style="width: 20px; height: 20px; background: rgba(220, 38, 38, 0.3); border: 2px solid #DC2626; border-radius: 3px;"></div>
+                    <span><strong>Holiday</strong> - Closed</span>
+                </div>
+            </div>
+
+            <!-- Event Details Panel -->
+            <div id="eventDetails" style="margin-top: 20px; padding: 15px; background: var(--card-bg); border-radius: 8px; display: none; border-left: 4px solid var(--primary-color);">
+                <h4 id="eventTitle" style="margin-top: 0; color: var(--primary-color);">Select a date to view events</h4>
+                <div id="eventList"></div>
+            </div>
+        </section>
+            <div style="background-color: var(--card-bg); padding: 20px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid var(--primary-color);">
+                <p><strong>Notification Date:</strong> December 30, 2025</p>
+                <p><strong>For:</strong> Undergraduate (UG) & Postgraduate (PG) programmes admitted in and before AY 2025-26</p>
+                <p><strong>Semester:</strong> Even Semester (January-June, 2026)</p>
+            </div>
+            
+            <div class="academic-calendar">
+                <div class="timetable" style="overflow-x: auto;">
+                    <table>
+                        <thead>
+                            <tr style="background-color: var(--primary-color); color: white;">
+                                <th style="padding: 15px; text-align: left;">S.No.</th>
+                                <th style="padding: 15px; text-align: left;">Activity / Event</th>
+                                <th style="padding: 15px; text-align: left;">Schedule / Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid var(--border-color);">1</td>
+                                <td style="padding: 12px; border: 1px solid var(--border-color);"><strong>Submission of Time-table & Open Elective/SWAYAM Courses (Approved by DC)</strong></td>
+                                <td style="padding: 12px; border: 1px solid var(--border-color); background: rgba(249, 115, 22, 0.08);">Latest by <strong>05.01.2026</strong></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid var(--border-color);">2</td>
+                                <td style="padding: 12px; border: 1px solid var(--border-color);"><strong>Students' Orientation</strong> - Selection of Electives/SWAYAM, Attendance Rules, Semester Registration & Mentor-Mentee Meetings</td>
+                                <td style="padding: 12px; border: 1px solid var(--border-color); background: rgba(249, 115, 22, 0.08);"><strong>05.01.2026</strong></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid var(--border-color);">3</td>
+                                <td style="padding: 12px; border: 1px solid var(--border-color);"><strong>Semester Registration</strong> - Course Selection & Semester Fee Submission</td>
+                                <td style="padding: 12px; border: 1px solid var(--border-color); background: rgba(249, 115, 22, 0.08);"><strong>06.01.2026 to 08.01.2026</strong></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid var(--border-color);">4</td>
+                                <td style="padding: 12px; border: 1px solid var(--border-color);"><strong>Teaching & Continuous Internal Assessment (CIA)</strong></td>
+                                <td style="padding: 12px; border: 1px solid var(--border-color); background: rgba(249, 115, 22, 0.08);"><strong>09.01.2026 to 27.04.2026</strong></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid var(--border-color);">5</td>
+                                <td style="padding: 12px; border: 1px solid var(--border-color);"><strong>Supplementary/Backlog Examination</strong> - UG programmes (As per Ordinance/Regulation)</td>
+                                <td style="padding: 12px; border: 1px solid var(--border-color); background: rgba(249, 115, 22, 0.08);"><strong>19.01.2026 to 23.01.2026</strong></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid var(--border-color);">6</td>
+                                <td style="padding: 12px; border: 1px solid var(--border-color);"><strong>Question Paper (QP) Moderation</strong> - End-Term Exams & Submission to CoE</td>
+                                <td style="padding: 12px; border: 1px solid var(--border-color); background: rgba(249, 115, 22, 0.08);"><strong>27.03.2026 to 02.04.2026</strong></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid var(--border-color);">7</td>
+                                <td style="padding: 12px; border: 1px solid var(--border-color);"><strong>Announcement of End-Term Exam Schedule</strong> - By CoE Office</td>
+                                <td style="padding: 12px; border: 1px solid var(--border-color); background: rgba(249, 115, 22, 0.08);"><strong>07.04.2026</strong></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid var(--border-color);">8</td>
+                                <td style="padding: 12px; border: 1px solid var(--border-color);"><strong>Exam Form Filling (SAMARTH Portal)</strong> - Bonafide Students Enrolled in Programmes</td>
+                                <td style="padding: 12px; border: 1px solid var(--border-color); background: rgba(220, 38, 38, 0.1);"><strong>08.04.2026 to 16.04.2026</strong></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid var(--border-color);">9</td>
+                                <td style="padding: 12px; border: 1px solid var(--border-color);"><strong>Verification of Exam Forms</strong> - Department Verification (Attendance & Other Criteria)</td>
+                                <td style="padding: 12px; border: 1px solid var(--border-color); background: rgba(249, 115, 22, 0.08);"><strong>28.04.2026 to 30.04.2026</strong></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid var(--border-color);">10</td>
+                                <td style="padding: 12px; border: 1px solid var(--border-color);"><strong>Hall Ticket Generation (SAMARTH)</strong> - For Eligible Students</td>
+                                <td style="padding: 12px; border: 1px solid var(--border-color); background: rgba(249, 115, 22, 0.08);"><strong>04.05.2026 to 05.05.2026</strong></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid var(--border-color);">11</td>
+                                <td style="padding: 12px; border: 1px solid var(--border-color);"><strong>Uploading CIA Marks (SAMARTH)</strong> - By Faculty Members</td>
+                                <td style="padding: 12px; border: 1px solid var(--border-color); background: rgba(249, 115, 22, 0.08);"><strong>One week before End-Term Exams</strong></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid var(--border-color);">12</td>
+                                <td style="padding: 12px; border: 1px solid var(--border-color);"><strong>End-Term Examination</strong> - Even Semester Theory & Practical Exams</td>
+                                <td style="padding: 12px; border: 1px solid var(--border-color); background: rgba(220, 38, 38, 0.1);"><strong>07.05.2026 to 02.06.2026</strong></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid var(--border-color);">13</td>
+                                <td style="padding: 12px; border: 1px solid var(--border-color);"><strong>Answer Script Display</strong> - Students Shown by Departments</td>
+                                <td style="padding: 12px; border: 1px solid var(--border-color); background: rgba(249, 115, 22, 0.08);"><strong>Latest by 08.06.2026</strong></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid var(--border-color);">14</td>
+                                <td style="padding: 12px; border: 1px solid var(--border-color);"><strong>BoE Meeting & Marks Uploading (SAMARTH)</strong> - Faculty Members Submit End-Term Marks</td>
+                                <td style="padding: 12px; border: 1px solid var(--border-color); background: rgba(249, 115, 22, 0.08);"><strong>Latest by 10.06.2026</strong></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid var(--border-color);">15</td>
+                                <td style="padding: 12px; border: 1px solid var(--border-color);"><strong>Result Submission to CoE</strong> - Final Results Processed</td>
+                                <td style="padding: 12px; border: 1px solid var(--border-color); background: rgba(249, 115, 22, 0.08);"><strong>Latest by 11.06.2026</strong></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid var(--border-color);">16</td>
+                                <td style="padding: 12px; border: 1px solid var(--border-color);"><strong>Declaration of Results</strong> - Official Result Publication</td>
+                                <td style="padding: 12px; border: 1px solid var(--border-color); background: rgba(249, 115, 22, 0.08);"><strong>12.06.2026</strong></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 12px; border: 1px solid var(--border-color);">17</td>
+                                <td style="padding: 12px; border: 1px solid var(--border-color);"><strong>Summer Vacation</strong> - For Students & Teachers</td>
+                                <td style="padding: 12px; border: 1px solid var(--border-color); background: rgba(22, 163, 74, 0.08);"><strong>12.06.2026 to 12.07.2026 onwards</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Important Dates Summary -->
+        <section class="dashboard-section">
+            <div class="section-title">⭐ Critical Dates (Don't Miss!)</div>
+            <div class="notice-container">
+                <div class="notice urgent">
+                    <div class="notice-header">
+                        <div class="notice-title">🔴 Semester Registration & Orientation</div>
+                        <span class="notice-badge badge-urgent">DEADLINE: 08.01.2026</span>
+                    </div>
+                    <p><strong>Dates:</strong> 06.01.2026 to 08.01.2026</p>
+                    <p>Complete course selection and semester fee submission on SAMARTH portal. Attend mandatory department orientation on 05.01.2026.</p>
+                </div>
+
+                <div class="notice urgent">
+                    <div class="notice-header">
+                        <div class="notice-title">🔴 Exam Form Submission</div>
+                        <span class="notice-badge badge-urgent">DEADLINE: 16.04.2026</span>
+                    </div>
+                    <p><strong>Dates:</strong> 08.04.2026 to 16.04.2026</p>
+                    <p>Fill and submit examination forms through SAMARTH Portal. Bonafide students must complete this process or face debarment from exams.</p>
+                </div>
+
+                <div class="notice urgent">
+                    <div class="notice-header">
+                        <div class="notice-title">🔴 End-Term Examinations</div>
+                        <span class="notice-badge badge-urgent">DATES: 07.05.2026 - 02.06.2026</span>
+                    </div>
+                    <p>Even Semester Final Examinations. Hall tickets will be generated latest by 05.05.2026. Prepare well for theory and practical exams.</p>
+                </div>
+
+                <div class="notice academic">
+                    <div class="notice-header">
+                        <div class="notice-title">🔵 Result Declaration</div>
+                        <span class="notice-badge badge-academic">DATE: 12.06.2026</span>
+                    </div>
+                    <p>Official results will be published after BoE meetings and faculty mark uploads. Check SAMARTH portal for your scores.</p>
+                </div>
+
+                <div class="notice event">
+                    <div class="notice-header">
+                        <div class="notice-title">🟡 Summer Vacation</div>
+                        <span class="notice-badge badge-event">PERIOD: 12.06.2026 - 12.07.2026</span>
+                    </div>
+                    <p>Summer break for students and teachers. Opportunity for internships, projects, and research work during this period.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Academic Milestones -->
+        <section class="dashboard-section">
+            <div class="section-title">🎯 Academic Milestones by Program (CUSB)</div>
+            <div class="section-grid">
+                <div class="card-item">
+                    <div class="card-item-title">M.Sc. Computer Science</div>
+                    <div class="card-item-content">
+                        <strong>Duration:</strong> 2 years (4 semesters)<br>
+                        <strong>Current Semester:</strong> 1-2<br>
+                        <strong>Progress:</strong> 50% ✓<br>
+                        <strong>Next Milestone:</strong> Semester 3 (AI Advanced Topics)<br>
+                        <strong>Expected Graduation:</strong> July 2027
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">M.Sc. Artificial Intelligence</div>
+                    <div class="card-item-content">
+                        <strong>Duration:</strong> 2 years (4 semesters)<br>
+                        <strong>Current Semester:</strong> 1-2<br>
+                        <strong>Progress:</strong> 50% ✓<br>
+                        <strong>Next Milestone:</strong> Semester 3 (Specialization Courses)<br>
+                        <strong>Expected Graduation:</strong> July 2027
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">PhD Computer Science</div>
+                    <div class="card-item-content">
+                        <strong>Duration:</strong> 3-5 years<br>
+                        <strong>Coursework:</strong> Semester 1-2<br>
+                        <strong>Progress:</strong> Upto 80% ✓<br>
+                        <strong>Next Milestone:</strong> Thesis Submission (Year 4-5)<br>
+                        <strong>Expected Defense:</strong> 2027-2028
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Research Scholar Programs</div>
+                    <div class="card-item-content">
+                        <strong>Advisor:</strong> Faculty mentors<br>
+                        <strong>Funding:</strong> CSIR/UGC Schemes<br>
+                        <strong>Research Focus:</strong> AI, ML, Cybersecurity<br>
+                        <strong>Publications:</strong> Min. 2-3 papers<br>
+                        <strong>Flexibility:</strong> Full-time research
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Semester Schedule -->
+        <section class="dashboard-section">
+            <div class="section-title">📚 CUSB Programme Schedule 2025-2027</div>
+            <div class="timetable">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Semester</th>
+                            <th>Programmes</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Exam Period</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Semester 1 (Odd)</strong></td>
+                            <td>UG & PG (All Programmes)</td>
+                            <td>12 Aug 2025</td>
+                            <td>15 Dec 2025</td>
+                            <td>16-26 Dec 2025</td>
+                        </tr>
+                        <tr style="background-color: rgba(249, 115, 22, 0.08);">
+                            <td><strong>Semester 2 (Even) ← Current</strong></td>
+                            <td>UG & PG (All Programmes)</td>
+                            <td>27 Dec 2025</td>
+                            <td>27 Apr 2026</td>
+                            <td>07.05.2026 - 02.06.2026</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Semester 3 (Odd)</strong></td>
+                            <td>UG & PG (All Programmes)</td>
+                            <td>12 Aug 2026</td>
+                            <td>15 Dec 2026</td>
+                            <td>16-26 Dec 2026</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Semester 4 (Even) - Final</strong></td>
+                            <td>UG & PG (All Programmes)</td>
+                            <td>27 Dec 2026</td>
+                            <td>27 Apr 2027</td>
+                            <td>07.05.2027 - 02.06.2027</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Summer Activities</strong></td>
+                            <td>Internship, Research, Projects</td>
+                            <td>12.06.2026</td>
+                            <td>12.07.2026</td>
+                            <td>Optional</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Holiday Schedule -->
+        <section class="dashboard-section">
+            <div class="section-title">🏖️ Holiday & Leave Schedule</div>
+            <div class="section-grid">
+                <div class="card-item">
+                    <div class="card-item-title">National Holidays</div>
+                    <div class="card-item-content">
+                        • Republic Day: 26 Jan<br>
+                        • Women's Day: 8 Mar<br>
+                        • Independence Day: 15 Aug<br>
+                        • Gandhi Jayanti: 2 Oct<br>
+                        • Diwali: Oct-Nov (TBD)<br>
+                        • Christmas: 25 Dec
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Academic Holidays</div>
+                    <div class="card-item-content">
+                        • Winter Recess: 21 Dec - 10 Jan<br>
+                        • Summer Break: 15 May - 30 Jun<br>
+                        • Mid-semester Break: 2 weeks<br>
+                        • Foundation Days: As per calendar<br>
+                        • Maintenance Week: Apr
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Student Leave</div>
+                    <div class="card-item-content">
+                        • Casual Leave: 5 days/semester<br>
+                        • Medical Leave: On production of certificate<br>
+                        • Duty Leave: For official work<br>
+                        • Special Leave: Dean's permission<br>
+                        Total: 10-15 days/semester
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Faculty Leave Policy</div>
+                    <div class="card-item-content">
+                        • Earned Leave: 20 days/year<br>
+                        • Sick Leave: 10 days/year<br>
+                        • Research Leave: As sanctioned<br>
+                        • Study Leave: Limited seats<br>
+                        • Sabbatical: After 6 years
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <p>&copy; 2026 Smart Academic Portal | Central University of South Bihar</p>
+        <p>For calendar changes, contact: academics@cusb.ac.in | +91-631-2229 530</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

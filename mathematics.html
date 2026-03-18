@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department of Mathematics - Central University of South Bihar</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Navigation Bar -->
+    <div class="navbar-top">
+        <button class="hamburger-btn" onclick="toggleSideMenu()" title="Open menu" aria-label="Open navigation menu">☰</button>
+        <div style="flex: 1;"></div>
+        <button class="theme-toggle" onclick="toggleDarkMode()" title="Toggle dark mode">🌙 Dark Mode</button>
+        <button class="lang-toggle" onclick="toggleLanguage()" title="Change language">हिंदी</button>
+    </div>
+
+    <!-- Side Navigation Menu -->
+    <div id="sideMenu" class="side-menu">
+        <button class="close-menu-btn" onclick="toggleSideMenu()" title="Close menu" aria-label="Close menu">✕</button>
+        <nav class="side-nav">
+            <a href="index.html" class="side-nav-link" onclick="toggleSideMenu()">🏠 Home</a>
+            <div class="side-nav-section">
+                <span class="side-nav-title">📚 Departments</span>
+                <a href="department.html" class="side-nav-link side-nav-sub" onclick="toggleSideMenu()">💻 Computer Science</a>
+                <a href="mathematics.html" class="side-nav-link side-nav-sub" onclick="toggleSideMenu()">🧮 Mathematics</a>
+            </div>
+            <a href="faculty.html" class="side-nav-link" onclick="toggleSideMenu()">👨‍🏫 Faculty</a>
+            <a href="student.html" class="side-nav-link" onclick="toggleSideMenu()">🎓 Students</a>
+            <a href="research.html" class="side-nav-link" onclick="toggleSideMenu()">🔬 Research</a>
+            <a href="calendar.html" class="side-nav-link" onclick="toggleSideMenu()">📅 Academic Calendar</a>
+            <a href="notices.html" class="side-nav-link" onclick="toggleSideMenu()">📢 Notices</a>
+            <a href="admin.html" class="side-nav-link" onclick="toggleSideMenu()">🏛️ Administration</a>
+        </nav>
+    </div>
+
+    <!-- Side Menu Overlay -->
+    <div id="sideMenuOverlay" class="side-menu-overlay" onclick="toggleSideMenu()"></div>
+
+    <!-- Department Hero Section -->
+    <div class="department-hero">
+        <a href="index.html">
+            <img src="images/logo-new3.png" class="header-logo">
+        </a>
+        <h1>Department of Mathematics</h1>
+        <p>Central University of South Bihar, Gaya</p>
+        <p style="margin-top: 10px; font-size: 0.95rem;">Excellence in Mathematical Science, Research & Innovation</p>
+    </div>
+
+    <!-- Smart Search -->
+    <div class="search">
+        <input 
+            type="text" 
+            id="searchBox" 
+            placeholder="Search notices, syllabus, faculty..."
+            aria-label="Search department information"
+        >
+        <button onclick="smartSearch()">Search</button>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Quick Links -->
+        <section class="dashboard-section">
+            <div class="section-title">📌 Department Hub</div>
+            <div class="roles">
+                <a href="#about" class="card" title="About department">
+                    <span class="card-emoji">📘</span>
+                    <span class="card-title">About</span>
+                    <span class="card-description">Department info</span>
+                </a>
+
+                <a href="#faculty" class="card" title="Faculty members">
+                    <span class="card-emoji">👨‍🏫</span>
+                    <span class="card-title">Faculty</span>
+                    <span class="card-description">Meet our team</span>
+                </a>
+
+                <a href="#programs" class="card" title="Academic programs">
+                    <span class="card-emoji">📚</span>
+                    <span class="card-title">Programs</span>
+                    <span class="card-description">Courses & paths</span>
+                </a>
+
+                <a href="#timetable" class="card" title="Department timetable">
+                    <span class="card-emoji">📅</span>
+                    <span class="card-title">Timetable</span>
+                    <span class="card-description">Class schedule</span>
+                </a>
+
+                <a href="#achievements" class="card" title="Achievements">
+                    <span class="card-emoji">🏆</span>
+                    <span class="card-title">Achievements</span>
+                    <span class="card-description">Success stories</span>
+                </a>
+
+                <a href="#contact" class="card" title="Contact info">
+                    <span class="card-emoji">📞</span>
+                    <span class="card-title">Contact</span>
+                    <span class="card-description">Reach us</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- About Department -->
+        <section class="dashboard-section" id="about">
+            <div class="section-title">📘 About the Department</div>
+            <div class="section-grid">
+                <div class="card-item">
+                    <div class="card-item-title">Department Overview</div>
+                    <div class="card-item-content">
+                        The Department of Mathematics at Central University of South Bihar is dedicated to fostering mathematical excellence through quality education, advanced research, and innovation. We offer comprehensive programs spanning undergraduate to doctoral levels, with emphasis on analytical thinking, problem-solving, and mathematical rigor.
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Vision & Mission</div>
+                    <div class="card-item-content">
+                        <strong>Vision:</strong> To be a leading department in mathematical sciences producing highly trained mathematicians and researchers.<br><br>
+                        <strong>Mission:</strong> To impart quality education aligned with CUSB's motto "ज्ञान सेवा विमुक्तये" (Knowledge, Service, Liberation), conduct impactful research, and foster innovation for societal benefit.
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Key Statistics</div>
+                    <div class="card-item-content">
+                        <strong>Head:</strong> Prof. Jay Prakash Singh<br>
+                        <strong>Faculty:</strong> 10+ professors<br>
+                        <strong>Students:</strong> 200+ across all programs<br>
+                        <strong>Postgraduates:</strong> 40+ (M.Sc. + Ph.D.)<br>
+                        <strong>Research Focus:</strong> Algebra, Analysis, Differential Equations
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Infrastructure</div>
+                    <div class="card-item-content">
+                        ✓ Mathematics Lab<br>
+                        ✓ Computer Lab (Numerical Methods)<br>
+                        ✓ Research Center<br>
+                        ✓ Library with 2000+ mathematics books<br>
+                        ✓ Seminar Hall & Conference Room
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Faculty Directory -->
+        <section class="dashboard-section" id="faculty">
+            <div class="section-title">👨‍🏫 Faculty Members</div>
+            
+            <div style="margin-bottom: 30px;">
+                <h3 style="color: var(--primary-color); margin-bottom: 15px;">Department Leadership</h3>
+                <div class="faculty-grid">
+                    <div class="faculty-card">
+                        <div class="faculty-avatar">🎓</div>
+                        <div class="faculty-info">
+                            <div class="faculty-name">Prof. Jay Prakash Singh</div>
+                            <div class="faculty-designation">Head of Department, Professor</div>
+                            <div class="faculty-subjects">
+                                <strong>Experience:</strong> 20+ years in mathematics education<br>
+                                <strong>Institution:</strong> Central University of South Bihar<br>
+                                <strong>Academic Leadership:</strong> School of Mathematics, Statistics & Computer Science<br>
+                                📧 Department Office
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="color: var(--primary-color); margin-bottom: 15px;">Faculty Members</h3>
+            <div class="faculty-grid">
+                <div class="faculty-card">
+                    <div class="faculty-avatar">👨‍🎓</div>
+                    <div class="faculty-info">
+                        <div class="faculty-name">Dr. Shubh Narayan Singh</div>
+                        <div class="faculty-designation">Assistant Professor</div>
+                        <div class="faculty-subjects">
+                            <strong>Specialization:</strong> Semigroup Theory, Graph Theory<br>
+                            <strong>Expertise:</strong> Automata Theory, Coding Theory<br>
+                            <strong>Qualification:</strong> Ph.D. (IIT Guwahati)<br>
+                            <strong>Email:</strong> s.singh@cusb.ac.in<br>
+                            <strong>Office Hours:</strong> Mon, Wed 3-5 PM
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faculty-card">
+                    <div class="faculty-avatar">👨‍🎓</div>
+                    <div class="faculty-info">
+                        <div class="faculty-name">Prof. Arun Kumar Mishra</div>
+                        <div class="faculty-designation">Assistant Professor</div>
+                        <div class="faculty-subjects">
+                            <strong>Specialization:</strong> Differential Equations<br>
+                            <strong>Experience:</strong> 15 years<br>
+                            <strong>Courses:</strong> ODEs, PDEs, Numerical Methods<br>
+                            <strong>Email:</strong> a.mishra@cusb.ac.in
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faculty-card">
+                    <div class="faculty-avatar">👩‍🎓</div>
+                    <div class="faculty-info">
+                        <div class="faculty-name">Dr. Priya Sharma</div>
+                        <div class="faculty-designation">Assistant Professor</div>
+                        <div class="faculty-subjects">
+                            <strong>Specialization:</strong> Real Analysis<br>
+                            <strong>Experience:</strong> 10 years<br>
+                            <strong>Courses:</strong> Real Analysis, Complex Analysis<br>
+                            <strong>Email:</strong> p.sharma@cusb.ac.in
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faculty-card">
+                    <div class="faculty-avatar">👨‍🎓</div>
+                    <div class="faculty-info">
+                        <div class="faculty-name">Prof. Vikram Singh</div>
+                        <div class="faculty-designation">Assistant Professor</div>
+                        <div class="faculty-subjects">
+                            <strong>Specialization:</strong> Algebra & Number Theory<br>
+                            <strong>Experience:</strong> 12 years<br>
+                            <strong>Research Area:</strong> Group Theory, Ring Theory<br>
+                            <strong>Email:</strong> v.singh@cusb.ac.in
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faculty-card">
+                    <div class="faculty-avatar">👩‍🎓</div>
+                    <div class="faculty-info">
+                        <div class="faculty-name">Dr. Neha Verma</div>
+                        <div class="faculty-designation">Assistant Professor</div>
+                        <div class="faculty-subjects">
+                            <strong>Specialization:</strong> Topology & Geometry<br>
+                            <strong>Experience:</strong> 8 years<br>
+                            <strong>Courses:</strong> Topology, Differential Geometry<br>
+                            <strong>Email:</strong> n.verma@cusb.ac.in
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faculty-card">
+                    <div class="faculty-avatar">👨‍🎓</div>
+                    <div class="faculty-info">
+                        <div class="faculty-name">Prof. Rajesh Patel</div>
+                        <div class="faculty-designation">Assistant Professor</div>
+                        <div class="faculty-subjects">
+                            <strong>Specialization:</strong> Applied Mathematics<br>
+                            <strong>Experience:</strong> 11 years<br>
+                            <strong>Research Areas:</strong> Optimization, Computational Methods<br>
+                            <strong>Email:</strong> r.patel@cusb.ac.in
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Academic Programs -->
+        <section class="dashboard-section" id="programs">
+            <div class="section-title">📚 Academic Programs</div>
+            <div class="section-grid">
+                <div class="card-item">
+                    <div class="card-item-title">5-Year Integrated UG-PG in Mathematics</div>
+                    <div class="card-item-content">
+                        <strong>Duration:</strong> 5 Years (2.5 Years UG + 2.5 Years PG)<br>
+                        <strong>Seats:</strong> 20<br>
+                        <strong>Admission:</strong> CUET + 10+2 Mathematics<br>
+                        <strong>Entrance:</strong> Merit-based selection<br>
+                        <strong>Focus:</strong> Comprehensive foundation + Advanced specialized topics<br>
+                        <strong>Total Credits:</strong> 200
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">M.Sc. Mathematics</div>
+                    <div class="card-item-content">
+                        <strong>Duration:</strong> 2 Years (4 Semesters)<br>
+                        <strong>Seats:</strong> 20<br>
+                        <strong>Admission Cycle:</strong> Yearly via CUET<br>
+                        <strong>Eligibility:</strong> B.Sc. Mathematics or related field<br>
+                        <strong>Focus:</strong> Advanced mathematics and specializations<br>
+                        <strong>Total Credits:</strong> 80
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Ph.D. in Mathematics</div>
+                    <div class="card-item-content">
+                        <strong>Duration:</strong> 3-5 Years<br>
+                        <strong>Current Scholars:</strong> 15+<br>
+                        <strong>Entry Mode:</strong> NET/GATE/CUET<br>
+                        <strong>Research Areas:</strong><br>
+                        • Algebra & Number Theory<br>
+                        • Analysis & Differential Equations<br>
+                        • Graph Theory & Coding
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Core Research Focus Areas</div>
+                    <div class="card-item-content">
+                        <strong>Algebra:</strong> Group Theory, Ring Theory, Semigroup Theory<br>
+                        <strong>Analysis:</strong> Real & Complex Analysis, Topology<br>
+                        <strong>Discrete Mathematics:</strong> Graph Theory, Automata<br>
+                        <strong>Applied:</strong> Differential Equations, Numerical Methods, Coding Theory
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timetable -->
+        <section class="timetable" id="timetable">
+            <h2 style="color: var(--primary-color); margin-bottom: 15px;">⏰ Department Timetable (Semester 1-2)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Monday</th>
+                        <th>Tuesday</th>
+                        <th>Wednesday</th>
+                        <th>Thursday</th>
+                        <th>Friday</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>09:00 - 10:30</strong></td>
+                        <td>Algebra (Dr. Singh) Room 101</td>
+                        <td>Real Analysis (Dr. Priya) Room 102</td>
+                        <td>Calculus (Prof. Mishra) Room 103</td>
+                        <td>Algebra Lab Room 101</td>
+                        <td>Differential Eq. (Prof. Mishra) Room 104</td>
+                    </tr>
+                    <tr>
+                        <td><strong>11:00 - 12:30</strong></td>
+                        <td>Complex Analysis (Room 105)</td>
+                        <td>Linear Algebra (Room 101)</td>
+                        <td>Topology Lab (Room 102)</td>
+                        <td>Discrete Math (Room 103)</td>
+                        <td>Graph Theory (Dr. Singh) Room 104</td>
+                    </tr>
+                    <tr>
+                        <td><strong>01:30 - 03:00</strong></td>
+                        <td>Numerical Methods (Room 201)</td>
+                        <td>ODEs (Prof. Mishra) Lab</td>
+                        <td>Abstract Algebra Lab (Room 105)</td>
+                        <td>Applied Math (Prof. Patel) Room 201</td>
+                        <td>Coding Theory (Dr. Singh) Lab</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Achievements & Rankings -->
+        <section class="dashboard-section" id="achievements">
+            <div class="section-title">🏆 Achievements & Excellence</div>
+            <div class="section-grid">
+                <div class="card-item">
+                    <div class="card-item-title">NAAC Accreditation</div>
+                    <div class="card-item-content">
+                        ⭐⭐⭐ Grade A<br>
+                        Cycle 3 (2022-2023)<br>
+                        Score: 3.34/4.00<br>
+                        <strong>Status:</strong> ✅ Accredited
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Research Excellence</div>
+                    <div class="card-item-content">
+                        📊 Publications: 50+ papers<br>
+                        📊 Journal Papers: 25+<br>
+                        📊 Conference Papers: 30+<br>
+                        📊 Citations: 200+<br>
+                        <strong>h-index:</strong> 8+
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Student Achievements</div>
+                    <div class="card-item-content">
+                        🥇 60% Placement Rate<br>
+                        💼 Avg Package: Rs. 5.5 LPA<br>
+                        🏆 Merit Scholars: 15+<br>
+                        🎖️ National Math Olympiad: Winners<br>
+                        ⭐ PhD from IITs: 8+
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Academic Recognition</div>
+                    <div class="card-item-content">
+                        🏢 Collaboration: 5+ universities<br>
+                        🌍 International: Canada, UK, USA<br>
+                        📚 Curriculum: UGC-approved<br>
+                        🔗 Industry Partnerships: Active<br>
+                        🎓 Guest Lectures: Regular
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Faculty Recognition</div>
+                    <div class="card-item-content">
+                        👨‍🏫 PhD from premier institutions<br>
+                        📖 Papers published annually<br>
+                        🔬 Research grants: Ongoing<br>
+                        🎤 Guest lectures at IITs<br>
+                        🏅 Academic awards: 5+
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Placements & Career</div>
+                    <div class="card-item-content">
+                        🏢 Azim Premji Foundation<br>
+                        🏭 Tech Companies (TCS, Infosys)<br>
+                        🏦 Financial Sector (Banks, Actuarial)<br>
+                        🎓 Academia (PhD, Postdoc)<br>
+                        🔍 Research Institutions
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Information -->
+        <section class="dashboard-section" id="contact">
+            <div class="section-title">📞 Contact Information</div>
+            <div class="section-grid">
+                <div class="card-item">
+                    <div class="card-item-title">Department Office</div>
+                    <div class="card-item-content">
+                        📍 Location: Department of Mathematics, CUSB Campus, Gaya<br>
+                        📍 Address: NH-120, Gaya Panchanpur Road, Karhara, Fatehpur, Gaya – 824236<br>
+                        📞 Reception: +91-631-2229 530<br>
+                        📞 Department: +91-631-2229 507<br>
+                        📧 Email: mathematics@cusb.ac.in<br>
+                        🌐 Website: www.cusb.ac.in
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Head of Department</div>
+                    <div class="card-item-content">
+                        <strong>Prof. Jay Prakash Singh</strong><br>
+                        Head, Department of Mathematics<br>
+                        📧 hod.math@cusb.ac.in<br>
+                        📞 Office: +91-631-2229 530<br>
+                        📍 Office: Room 301, Mathematics Building<br>
+                        ⏰ Office Hours: Mon-Fri 2-4 PM
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Key Contacts</div>
+                    <div class="card-item-content">
+                        <strong>Registrar:</strong><br>
+                        📧 registrar@cub.ac.in<br><br>
+                        <strong>Admission Office:</strong><br>
+                        📧 admission@cusb.ac.in<br>
+                        📞 Helpline: +91-9472979367
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Quick Links</div>
+                    <div class="card-item-content">
+                        <button class="btn-primary" style="margin-top: 10px; width: 100%; margin-bottom: 5px;">Apply for Admission</button>
+                        <button class="btn-primary" style="margin-top: 5px; width: 100%; margin-bottom: 5px;">Download Prospectus</button>
+                        <button class="btn-primary" style="margin-top: 5px; width: 100%;">Research Opportunities</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Latest News from Department -->
+        <section class="dashboard-section">
+            <div class="section-title">📰 Latest News & Updates</div>
+            <div class="notice-container">
+                <div class="notice event">
+                    <div class="notice-header">
+                        <div class="notice-title">Guest Lecture: Applied Mathematics in Real-World Problems</div>
+                        <span class="notice-badge badge-event">EVENT</span>
+                    </div>
+                    <p>Dr. Rajesh Patel will present optimization techniques used in industry. Date: 28 Feb, 3 PM, Seminar Hall. All students invited!</p>
+                </div>
+
+                <div class="notice academic">
+                    <div class="notice-header">
+                        <div class="notice-title">Research Publication: Graph Theory Paper Accepted</div>
+                        <span class="notice-badge badge-academic">ACADEMIC</span>
+                    </div>
+                    <p>Dr. Shubh Narayan Singh's paper on "Advanced Graph Algorithms" has been accepted in the Journal of Discrete Mathematics. Congratulations to the research team!</p>
+                </div>
+
+                <div class="notice academic">
+                    <div class="notice-header">
+                        <div class="notice-title">PhD Scholarship Opportunities - Apply Now</div>
+                        <span class="notice-badge badge-academic">ACADEMIC</span>
+                    </div>
+                    <p>Central University of South Bihar is offering doctoral scholarships in Mathematics. Specializations: Algebra, Analysis, Applied Mathematics. Deadline: 31 Mar 2026. Apply at: mathematics@cusb.ac.in</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <p>&copy; 2026 Smart Academic Portal | Department of Mathematics</p>
+        <p>Central University of South Bihar | Excellence in Mathematical Science</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

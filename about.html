@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About The Web-Weavers - Smart Design for an Academic Website competition prototype">
+    <meta name="keywords" content="about, web-weavers, competition, academic website, design">
+    <title>About the Project - Smart Academic Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Navigation Bar -->
+    <div class="navbar-top">
+        <button class="hamburger-btn" onclick="toggleSideMenu()" title="Open menu" aria-label="Open navigation menu">☰</button>
+        <div style="flex: 1;"></div>
+        <button class="theme-toggle" onclick="toggleDarkMode()" title="Toggle dark mode" aria-label="Toggle dark mode">🌙 Dark Mode</button>
+        <button class="lang-toggle" onclick="toggleLanguage()" title="Change language" aria-label="Change language">हिंदी</button>
+    </div>
+
+    <!-- Side Navigation Menu -->
+    <div id="sideMenu" class="side-menu">
+        <button class="close-menu-btn" onclick="toggleSideMenu()" title="Close menu" aria-label="Close menu">✕</button>
+        <nav class="side-nav">
+            <a href="index.html" class="side-nav-link" onclick="toggleSideMenu()">🏠 Home</a>
+            <a href="about.html" class="side-nav-link" onclick="toggleSideMenu()">ℹ️ About the Project</a>
+            <div class="side-nav-section">
+                <span class="side-nav-title">📚 Departments</span>
+                <a href="department.html" class="side-nav-link side-nav-sub" onclick="toggleSideMenu()">💻 Computer Science</a>
+                <a href="mathematics.html" class="side-nav-link side-nav-sub" onclick="toggleSideMenu()">🧮 Mathematics</a>
+            </div>
+            <a href="faculty.html" class="side-nav-link" onclick="toggleSideMenu()">👨‍🏫 Faculty</a>
+            <a href="student.html" class="side-nav-link" onclick="toggleSideMenu()">🎓 Students</a>
+            <a href="research.html" class="side-nav-link" onclick="toggleSideMenu()">🔬 Research (Public)</a>
+            <a href="research_portal.html" id="researchLink" class="side-nav-link" style="display:none;" onclick="toggleSideMenu()">🔬 Research Portal</a>
+            <a href="calendar.html" class="side-nav-link" onclick="toggleSideMenu()">📅 Academic Calendar</a>
+            <a href="notices.html" class="side-nav-link" onclick="toggleSideMenu()">📢 Notices</a>
+            <a href="admin.html" class="side-nav-link" onclick="toggleSideMenu()">🏛️ Administration</a>
+            <!-- authentication links -->
+            <a href="login.html" id="loginLink" class="side-nav-link" onclick="toggleSideMenu()">
+                <span class="card-emoji">🔒</span> <span data-i18n="login">Login</span>
+            </a>
+            <a href="javascript:logoutUser()" id="logoutLink" class="side-nav-link" style="display:none;">
+                <span class="card-emoji">🔓</span> <span data-i18n="logout">Logout</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Side Menu Overlay -->
+    <div id="sideMenuOverlay" class="side-menu-overlay" onclick="toggleSideMenu()"></div>
+
+    <!-- Department Hero Section -->
+    <div class="department-hero">
+        <a href="index.html">
+            <img src="images/logo-new3.png" class="header-logo">
+        </a>
+        <h1>ℹ️ About the Project</h1>
+        <p>Smart Academic Portal</p>
+        <p style="margin-top: 10px; font-size: 0.95rem;">A Student-First Digital Ecosystem</p>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- About Section -->
+        <section class="dashboard-section">
+            <h2 class="section-title">
+                About the Project
+                <span class="competition-badge">🏆 Competition Prototype</span>
+            </h2>
+
+            <div class="project-about">
+                <div class="project-text">
+                    <p>
+                        <strong>The Web-Weavers: Smart Design for an Academic Website</strong> is a design-focused competition
+                        aimed at rethinking how academic websites serve students, faculty, and administrators.
+                    </p>
+
+                    <p>
+                        This website is a conceptual and functional prototype that demonstrates a
+                        <strong>student-first digital academic ecosystem</strong> through role-based navigation,
+                        smart notice categorization, department micro-sites, and accessibility-aware design.
+                    </p>
+
+                    <p>
+                        The project prioritizes <strong>clarity, usability, inclusivity, and scalability</strong>,
+                        showcasing how thoughtful design can significantly improve academic information delivery.
+                    </p>
+                </div>
+
+                <div class="project-poster">
+                    <img src="images/web-weavers-poster.jpg" alt="The Web-Weavers Competition Poster">
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Goals -->
+        <section class="dashboard-section">
+            <h2 class="section-title">Project Goals & Objectives</h2>
+
+            <div class="roles">
+                <div class="card">
+                    <span class="card-emoji">🎯</span>
+                    <span class="card-title">Student-First Design</span>
+                    <span class="card-description">Prioritize student needs and learning experience in every design decision</span>
+                </div>
+
+                <div class="card">
+                    <span class="card-emoji">🔍</span>
+                    <span class="card-title">Information Clarity</span>
+                    <span class="card-description">Make academic information easily discoverable and understandable</span>
+                </div>
+
+                <div class="card">
+                    <span class="card-emoji">♿</span>
+                    <span class="card-title">Inclusive Access</span>
+                    <span class="card-description">WCAG compliant design ensuring accessibility for all users</span>
+                </div>
+
+                <div class="card">
+                    <span class="card-emoji">📱</span>
+                    <span class="card-title">Responsive Design</span>
+                    <span class="card-description">Seamless experience across all devices and screen sizes</span>
+                </div>
+
+                <div class="card">
+                    <span class="card-emoji">🌍</span>
+                    <span class="card-title">Multilingual Support</span>
+                    <span class="card-description">Support multiple languages for diverse user base</span>
+                </div>
+
+                <div class="card">
+                    <span class="card-emoji">⚙️</span>
+                    <span class="card-title">Smart Features</span>
+                    <span class="card-description">Implement intelligent systems for better information management</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Features -->
+        <section class="dashboard-section">
+            <h2 class="section-title">Key Features Implemented</h2>
+
+            <div class="roles">
+                <div class="card">
+                    <span class="card-emoji">👥</span>
+                    <span class="card-title">Role-Based Navigation</span>
+                    <span class="card-description">Different dashboards for Students, Faculty, Researchers, and Admin</span>
+                </div>
+
+                <div class="card">
+                    <span class="card-emoji">📢</span>
+                    <span class="card-title">Smart Notice Board</span>
+                    <span class="card-description">Category-based notices with priority levels and auto-expiry concept</span>
+                </div>
+
+                <div class="card">
+                    <span class="card-emoji">📅</span>
+                    <span class="card-title">Academic Calendar</span>
+                    <span class="card-description">Complete semester schedule with all important academic dates</span>
+                </div>
+
+                <div class="card">
+                    <span class="card-emoji">🔎</span>
+                    <span class="card-title">Smart Search</span>
+                    <span class="card-description">Unified search across notices, faculty, departments, and courses</span>
+                </div>
+
+                <div class="card">
+                    <span class="card-emoji">🌙</span>
+                    <span class="card-title">Dark Mode Support</span>
+                    <span class="card-description">Comfortable reading experience with dark theme option</span>
+                </div>
+
+                <div class="card">
+                    <span class="card-emoji">🌐</span>
+                    <span class="card-title">Multilingual Interface</span>
+                    <span class="card-description">English and Hindi language support with easy switching</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technology Stack -->
+        <section class="dashboard-section">
+            <h2 class="section-title">Technology Stack</h2>
+
+            <div class="roles">
+                <div class="card">
+                    <span class="card-emoji">📝</span>
+                    <span class="card-title">HTML5</span>
+                    <span class="card-description">Semantic markup for better accessibility and SEO</span>
+                </div>
+
+                <div class="card">
+                    <span class="card-emoji">🎨</span>
+                    <span class="card-title">CSS3</span>
+                    <span class="card-description">Modern styling with animations and responsive design</span>
+                </div>
+
+                <div class="card">
+                    <span class="card-emoji">⚡</span>
+                    <span class="card-title">Vanilla JavaScript</span>
+                    <span class="card-description">No framework dependencies for lightweight performance</span>
+                </div>
+
+                <div class="card">
+                    <span class="card-emoji">♿</span>
+                    <span class="card-title">WCAG 2.1</span>
+                    <span class="card-description">Accessibility guidelines compliance for inclusive design</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Back to Home -->
+        <section class="dashboard-section" style="text-align: center; margin: 40px auto;">
+            <a href="index.html" class="card" style="display: inline-block; width: auto;">
+                <span class="card-emoji">🏠</span>
+                <span class="card-title">Back to Home</span>
+            </a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 Smart Academic Portal</p>
+        <p class="footer-note">
+            Prototype developed for <strong>The Web-Weavers: Smart Design for an Academic Website</strong> competition
+        </p>
+        <p class="footer-credit">
+            Designed & developed by <strong>SADAF PERWEZ</strong>, Department of Mathematics, Central University of South Bihar
+        </p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Portal - Smart Academic Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Navigation Bar -->
+    <div class="navbar-top">
+        <button class="hamburger-btn" onclick="toggleSideMenu()" title="Open menu" aria-label="Open navigation menu">☰</button>
+        <div style="flex: 1;"></div>
+        <button class="theme-toggle" onclick="toggleDarkMode()" title="Toggle dark mode">🌙 Dark Mode</button>
+        <button class="lang-toggle" onclick="toggleLanguage()" title="Change language">हिंदी</button>
+    </div>
+
+    <!-- Side Navigation Menu -->
+    <div id="sideMenu" class="side-menu">
+        <button class="close-menu-btn" onclick="toggleSideMenu()" title="Close menu" aria-label="Close menu">✕</button>
+        <nav class="side-nav">
+            <a href="index.html" class="side-nav-link" onclick="toggleSideMenu()">🏠 Home</a>
+            <div class="side-nav-section">
+                <span class="side-nav-title">📚 Departments</span>
+                <a href="department.html" class="side-nav-link side-nav-sub" onclick="toggleSideMenu()">💻 Computer Science</a>
+                <a href="mathematics.html" class="side-nav-link side-nav-sub" onclick="toggleSideMenu()">🧮 Mathematics</a>
+            </div>
+            <a href="faculty.html" class="side-nav-link" onclick="toggleSideMenu()">👨‍🏫 Faculty</a>
+            <a href="student.html" class="side-nav-link" onclick="toggleSideMenu()">🎓 Students</a>
+            <a href="research.html" class="side-nav-link" onclick="toggleSideMenu()">🔬 Research (Public)</a>
+            <a href="research_portal.html" id="researchLink" class="side-nav-link" style="display:none;" onclick="toggleSideMenu()">🔬 Research Portal</a>
+            <a href="calendar.html" class="side-nav-link" onclick="toggleSideMenu()">📅 Academic Calendar</a>
+            <a href="notices.html" class="side-nav-link" onclick="toggleSideMenu()">📢 Notices</a>
+            <a href="admin.html" class="side-nav-link" onclick="toggleSideMenu()">🏛️ Administration</a>
+            <!-- authentication links -->
+            <a href="login.html" id="loginLink" class="side-nav-link" onclick="toggleSideMenu()">
+                <span class="card-emoji">🔒</span> <span data-i18n="login">Login</span>
+            </a>
+            <a href="javascript:logoutUser()" id="logoutLink" class="side-nav-link" style="display:none;">
+                <span class="card-emoji">🔓</span> <span data-i18n="logout">Logout</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Side Menu Overlay -->
+    <div id="sideMenuOverlay" class="side-menu-overlay" onclick="toggleSideMenu()"></div>
+
+    <!-- Department Hero Section -->
+    <div class="department-hero">
+        <a href="index.html">
+            <img src="images/logo-new3.png" class="header-logo">
+        </a>
+        <h1>👨‍🏫 Faculty Portal</h1>
+        <p>Central University of South Bihar</p>
+        <p style="margin-top: 10px; font-size: 0.95rem;">Computer Science Department - M.Sc. Programs</p>
+    </div>
+
+    <div id="greeting" style="text-align:right; padding: 0 20px; font-size:0.9rem;"></div>
+
+    <!-- Smart Search -->
+    <div class="search">
+        <input 
+            type="text" 
+            id="searchBox" 
+            placeholder="Search notices, syllabus, faculty..."
+            aria-label="Search faculty resources"
+        >
+        <button onclick="smartSearch()">Search</button>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Quick Access -->
+        <section class="dashboard-section">
+            <div class="section-title" data-i18n="quick_access">📌 Quick Access</div>
+            <div class="roles">
+                <a href="#profile" class="card" title="View profile">
+                    <span class="card-emoji">👤</span>
+                    <span class="card-title" data-i18n="profile">Profile</span>
+                    <span class="card-description">Your credentials & info</span>
+                </a>
+
+                <a href="#courses" class="card" title="Manage courses">
+                    <span class="card-emoji">📚</span>
+                    <span class="card-title" data-i18n="courses">Courses</span>
+                    <span class="card-description">Assigned subjects</span>
+                </a>
+
+                <a href="#uploads" class="card" title="Upload content">
+                    <span class="card-emoji">📤</span>
+                    <span class="card-title" data-i18n="upload_materials">Upload Syllabus & Notes</span>
+                    <span class="card-description">Share course materials</span>
+                </a>
+
+                <a href="#attendance" class="card" title="Mark attendance">
+                    <span class="card-emoji">✅</span>
+                    <span class="card-title" data-i18n="mark_attendance">Mark Attendance</span>
+                    <span class="card-description">Student attendance</span>
+                </a>
+
+                <a href="#grades" class="card" title="Submit grades">
+                    <span class="card-emoji">📊</span>
+                    <span class="card-title" data-i18n="submit_grades">Submit Grades</span>
+                    <span class="card-description">Assessments & marks</span>
+                </a>
+
+                <a href="#research" class="card" title="Research info">
+                    <span class="card-emoji">🔬</span>
+                    <span class="card-title" data-i18n="research_profile">Research Profile</span>
+                    <span class="card-description">Publications & projects</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Faculty Profile -->
+        <section class="dashboard-section" id="profile">
+            <div class="section-title" data-i18n="faculty_profile">👤 Faculty Profile</div>
+            <div class="faculty-grid" style="max-width: 600px;">
+                <div class="faculty-card">
+                    <div class="faculty-avatar">👨‍🎓</div>
+                    <div class="faculty-info">
+                        <div class="faculty-name">Dr. Rajesh Kumar</div>
+                        <div class="faculty-designation">Assistant Professor, Computer Science</div>
+                        <div class="faculty-subjects">
+                            <strong>Specialization:</strong> Data Structures & Algorithms<br>
+                            <strong>Experience:</strong> 12 years<br>
+                            <strong>Ph.D.:</strong> Research in Computational Science<br>
+                            <strong>Institution:</strong> Central University of South Bihar<br>
+                            <strong>Email:</strong> r.kumar@cusb.ac.in<br>
+                            <strong>Office:</strong> Room 301, CS Building, CUSB Campus<br>
+                            <strong>Hours:</strong> Mon, Wed 3-5 PM
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Courses Section -->
+        <section class="dashboard-section" id="courses">
+            <div class="section-title">📚 M.Sc. Courses Assigned</div>
+            <div class="section-grid">
+                <div class="card-item">
+                    <div class="card-item-title">Advanced Data Structures - MCS 101</div>
+                    <div class="card-item-content">
+                        <strong>Semester:</strong> 1<br>
+                        <strong>Students:</strong> 20 M.Sc. CS + 8 M.Sc. AI<br>
+                        <strong>Lab:</strong> Lab-A (Tue & Thu)<br>
+                        <strong>Classroom:</strong> Room 203<br>
+                        <button class="btn-primary" style="margin-top: 10px; width: 100%;">Manage Course</button>
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Algorithms - MCS 102</div>
+                    <div class="card-item-content">
+                        <strong>Semester:</strong> 1<br>
+                        <strong>Students:</strong> 17 enrolled<br>
+                        <strong>Lecture:</strong> Mon & Wed 10-11:30 AM<br>
+                        <strong>Location:</strong> Room 205<br>
+                        <button class="btn-primary" style="margin-top: 10px; width: 100%;">Manage Course</button>
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Database Management Systems - MCS 201</div>
+                    <div class="card-item-content">
+                        <strong>Semester:</strong> 2<br>
+                        <strong>Students:</strong> 25 enrolled<br>
+                        <strong>Lab:</strong> Lab-B (Fri)<br>
+                        <strong>Location:</strong> Room 208<br>
+                        <button class="btn-primary" style="margin-top: 10px; width: 100%;">Manage Course</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Upload Materials -->
+        <section class="admin-section" id="uploads">
+            <div class="section-title">📤 Upload Course Materials</div>
+            <div style="background-color: var(--card-bg); padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px var(--card-shadow);">
+                <div class="form-group">
+                    <label for="course-select">Select Course:</label>
+                    <select id="course-select">
+                        <option value="">-- Choose a course --</option>
+                        <option value="mcs101">Advanced Data Structures - MCS 101</option>
+                        <option value="mcs102">Algorithms - MCS 102</option>
+                        <option value="mcs201">Database Management Systems - MCS 201</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="material-type">Material Type:</label>
+                    <select id="material-type">
+                        <option value="">-- Select type --</option>
+                        <option value="syllabus">Syllabus</option>
+                        <option value="lecture">Lecture Notes</option>
+                        <option value="lab">Lab Manual</option>
+                        <option value="assignment">Assignment</option>
+                        <option value="notice">Course Notice</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="file-upload">Upload File:</label>
+                    <input type="file" id="file-upload" accept=".pdf,.doc,.docx,.ppt,.pptx">
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <textarea id="description" placeholder="Enter description..."></textarea>
+                </div>
+
+                <button class="btn-primary" onclick="alert('Material will be uploaded (Prototype)')">Upload Material</button>
+            </div>
+        </section>
+
+        <!-- Notice Publishing -->
+        <section class="admin-section">
+            <div class="section-title">📢 Publish Course Notice</div>
+            <div style="background-color: var(--card-bg); padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px var(--card-shadow);">
+                <div class="form-group">
+                    <label for="notice-course">Course:</label>
+                    <select id="notice-course">
+                        <option value="">-- Select course --</option>
+                        <option value="mcs101">Advanced Data Structures - MCS 101</option>
+                        <option value="mcs102">Algorithms - MCS 102</option>
+                        <option value="mcs201">Database Management Systems - MCS 201</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="notice-title">Notice Title:</label>
+                    <input type="text" id="notice-title" placeholder="e.g., Assignment 3 Deadline Extended">
+                </div>
+
+                <div class="form-group">
+                    <label for="notice-content">Content:</label>
+                    <textarea id="notice-content" placeholder="Enter notice content..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="notice-priority">Priority:</label>
+                    <select id="notice-priority">
+                        <option value="normal">Normal</option>
+                        <option value="urgent">Urgent</option>
+                        <option value="important">Important</option>
+                    </select>
+                </div>
+
+                <button class="btn-primary" onclick="alert('Notice published (Prototype)')">Publish Notice</button>
+            </div>
+        </section>
+
+        <!-- Attendance Management -->
+        <section class="dashboard-section" id="attendance">
+            <div class="section-title">✅ Mark Attendance</div>
+            <div class="section-grid">
+                <div class="card-item">
+                    <div class="card-item-title">Data Structures - Lecture</div>
+                    <div class="card-item-content">
+                        <strong>Date:</strong> 22 Feb 2026<br>
+                        <strong>Class Size:</strong> 45 students<br>
+                        <button class="btn-primary" style="margin-top: 10px; width: 100%;">Mark Attendance</button>
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">DS Lab - Practical</div>
+                    <div class="card-item-content">
+                        <strong>Date:</strong> 25 Feb 2026<br>
+                        <strong>Class Size:</strong> 45 students<br>
+                        <button class="btn-primary" style="margin-top: 10px; width: 100%;">Mark Attendance</button>
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Algorithms - Lecture</div>
+                    <div class="card-item-content">
+                        <strong>Date:</strong> 23 Feb 2026<br>
+                        <strong>Class Size:</strong> 50 students<br>
+                        <button class="btn-primary" style="margin-top: 10px; width: 100%;">Mark Attendance</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Grades Management -->
+        <section class="dashboard-section" id="grades">
+            <div class="section-title">📊 Grades & Assessments</div>
+            <div class="timetable" style="margin: 0;">
+                <h3 style="color: var(--primary-color); margin-bottom: 15px;">Assessment Schedule</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Course</th>
+                            <th>Assessment Type</th>
+                            <th>Date</th>
+                            <th>Due Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Data Structures</td>
+                            <td>Continuous Assessment 1</td>
+                            <td>22 Feb</td>
+                            <td>28 Feb</td>
+                            <td><span style="color: #27ae60;">✓ Completed</span></td>
+                        </tr>
+                        <tr>
+                            <td>Algorithms</td>
+                            <td>Midterm Exam</td>
+                            <td>20 Mar</td>
+                            <td>25 Mar</td>
+                            <td><span style="color: #f39c12;">⏳ Pending</span></td>
+                        </tr>
+                        <tr>
+                            <td>Web Development</td>
+                            <td>Project Submission</td>
+                            <td>10 Apr</td>
+                            <td>15 Apr</td>
+                            <td><span style="color: #f39c12;">⏳ Pending</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Research Profile -->
+        <section class="dashboard-section" id="research">
+            <div class="section-title">🔬 Research Profile</div>
+            <div class="section-grid">
+                <div class="card-item">
+                    <div class="card-item-title">Research Areas</div>
+                    <div class="card-item-content">
+                        • Data Structure Optimization<br>
+                        • Algorithm Design<br>
+                        • Distributed Systems<br>
+                        • Machine Learning in Algorithms
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Publications</div>
+                    <div class="card-item-content">
+                        <strong>2024:</strong> 3 papers published<br>
+                        <strong>2023:</strong> 2 papers published<br>
+                        <strong>Conferences:</strong> 4 attended<br>
+                        <strong>Citations:</strong> 156
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Ongoing Projects</div>
+                    <div class="card-item-content">
+                        • Graph Algorithm Optimization<br>
+                        • Efficient Sorting Techniques<br>
+                        • Research Scholars: 3<br>
+                        • Funding: Rs. 5,00,000
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Research Scholars</div>
+                    <div class="card-item-content">
+                        👤 Priya Sharma (PhD)<br>
+                        👤 Amit Patel (M.Tech)<br>
+                        👤 Sneha Singh (B.Tech Project)<br>
+                        <button class="btn-primary" style="margin-top: 10px; width: 100%;">Add Scholar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <p>&copy; 2026 Smart Academic Portal | Central University of South Bihar</p>
+        <p>For support, contact: department@cusb.ac.in | Phone: +91-631-2229 530</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        checkRole('faculty');
+    </script>
+</body>
+</html>

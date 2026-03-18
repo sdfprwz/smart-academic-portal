@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department of Computer Science - Smart Academic Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Navigation Bar -->
+    <div class="navbar-top">
+        <button class="hamburger-btn" onclick="toggleSideMenu()" title="Open menu" aria-label="Open navigation menu">☰</button>
+        <div style="flex: 1;"></div>
+        <button class="theme-toggle" onclick="toggleDarkMode()" title="Toggle dark mode">🌙 Dark Mode</button>
+        <button class="lang-toggle" onclick="toggleLanguage()" title="Change language">हिंदी</button>
+    </div>
+
+    <!-- Side Navigation Menu -->
+    <div id="sideMenu" class="side-menu">
+        <button class="close-menu-btn" onclick="toggleSideMenu()" title="Close menu" aria-label="Close menu">✕</button>
+        <nav class="side-nav">
+            <a href="index.html" class="side-nav-link" onclick="toggleSideMenu()">🏠 Home</a>
+            <div class="side-nav-section">
+                <span class="side-nav-title">📚 Departments</span>
+                <a href="department.html" class="side-nav-link side-nav-sub" onclick="toggleSideMenu()">💻 Computer Science</a>
+                <a href="mathematics.html" class="side-nav-link side-nav-sub" onclick="toggleSideMenu()">🧮 Mathematics</a>
+            </div>
+            <a href="faculty.html" class="side-nav-link" onclick="toggleSideMenu()">👨‍🏫 Faculty</a>
+            <a href="student.html" class="side-nav-link" onclick="toggleSideMenu()">🎓 Students</a>
+            <a href="research.html" class="side-nav-link" onclick="toggleSideMenu()">🔬 Research</a>
+            <a href="calendar.html" class="side-nav-link" onclick="toggleSideMenu()">📅 Academic Calendar</a>
+            <a href="notices.html" class="side-nav-link" onclick="toggleSideMenu()">📢 Notices</a>
+            <a href="admin.html" class="side-nav-link" onclick="toggleSideMenu()">🏛️ Administration</a>
+        </nav>
+    </div>
+
+    <!-- Side Menu Overlay -->
+    <div id="sideMenuOverlay" class="side-menu-overlay" onclick="toggleSideMenu()"></div>
+
+    <!-- Department Hero Section -->
+    <div class="department-hero">
+        <a href="index.html">
+            <img src="images/logo-new3.png" class="header-logo">
+        </a>
+        <h1>🏢 Department of Computer Science</h1>
+        <p>Central University of South Bihar, Gaya</p>
+        <p style="margin-top: 10px; font-size: 0.95rem;">Excellence in Teaching, Research & Innovation</p>
+    </div>
+
+    <!-- Smart Search -->
+    <div class="search">
+        <input 
+            type="text" 
+            id="searchBox" 
+            placeholder="Search notices, syllabus, faculty..."
+            aria-label="Search department information"
+        >
+        <button onclick="smartSearch()">Search</button>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Quick Links -->
+        <section class="dashboard-section">
+            <div class="section-title">📌 Department Hub</div>
+            <div class="roles">
+                <a href="#about" class="card" title="About department">
+                    <span class="card-emoji">📘</span>
+                    <span class="card-title">About</span>
+                    <span class="card-description">Department info</span>
+                </a>
+
+                <a href="#faculty" class="card" title="Faculty members">
+                    <span class="card-emoji">👨‍🏫</span>
+                    <span class="card-title">Faculty</span>
+                    <span class="card-description">Meet our team</span>
+                </a>
+
+                <a href="#programs" class="card" title="Academic programs">
+                    <span class="card-emoji">📚</span>
+                    <span class="card-title">Programs</span>
+                    <span class="card-description">Courses & paths</span>
+                </a>
+
+                <a href="#timetable-dept" class="card" title="Department timetable">
+                    <span class="card-emoji">📅</span>
+                    <span class="card-title">Timetable</span>
+                    <span class="card-description">Class schedule</span>
+                </a>
+
+                <a href="#achievements" class="card" title="Achievements">
+                    <span class="card-emoji">🏆</span>
+                    <span class="card-title">Achievements</span>
+                    <span class="card-description">Success stories</span>
+                </a>
+
+                <a href="#contact" class="card" title="Contact info">
+                    <span class="card-emoji">📞</span>
+                    <span class="card-title">Contact</span>
+                    <span class="card-description">Reach us</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- About Department -->
+        <section class="dashboard-section" id="about">
+            <div class="section-title">📘 About the Department</div>
+            <div class="section-grid">
+                <div class="card-item">
+                    <div class="card-item-title">Department Overview</div>
+                    <div class="card-item-content">
+                        The Department of Computer Science at Central University of South Bihar (CUSB) is dedicated to advancing the field of computer science through quality education, cutting-edge research, and fostering innovation. Established as part of CUSB's commitment to excellence in higher education, the department offers comprehensive programs in Computer Science and related disciplines.
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Vision & Mission</div>
+                    <div class="card-item-content">
+                        <strong>Vision:</strong> To be a leading department producing globally competitive computer scientists and professionals.<br><br>
+                        <strong>Mission:</strong> To impart quality education aligned with CUSB's motto "ज्ञान सेवा विमुक्तये" (Knowledge, Service, Liberation), conduct impactful research, and foster innovation for societal benefit.
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Key Statistics</div>
+                    <div class="card-item-content">
+                        <strong>Founded:</strong> 1995<br>
+                        <strong>Faculty:</strong> 15 professors<br>
+                        <strong>Students:</strong> 420 undergraduate<br>
+                        <strong>Postgraduates:</strong> 85 (MA + Ph.D.)<br>
+                        <strong>Accreditation:</strong> NAAC Grade A
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Infrastructure</div>
+                    <div class="card-item-content">
+                        ✓ 8 Computer Labs<br>
+                        ✓ Advanced Research Center<br>
+                        ✓ High-speed Internet<br>
+                        ✓ Library with 5000+ resources<br>
+                        ✓ Seminar Hall & Conference Room
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Faculty Directory -->
+        <section class="dashboard-section" id="faculty">
+            <div class="section-title">👨‍🏫 Faculty Members</div>
+            
+            <div style="margin-bottom: 30px;">
+                <h3 style="color: var(--primary-color); margin-bottom: 15px;">University Leadership</h3>
+                <div class="faculty-grid">
+                    <div class="faculty-card">
+                        <div class="faculty-avatar">🎓</div>
+                        <div class="faculty-info">
+                            <div class="faculty-name">Prof. Kameshwar Nath Singh</div>
+                            <div class="faculty-designation">Vice-Chancellor, CUSB</div>
+                            <div class="faculty-subjects">
+                                <strong>Institution:</strong> Central University of South Bihar<br>
+                                <strong>Experience:</strong> Extensive academic & administrative<br>
+                                <strong>Location:</strong> CUSB Campus, Gaya<br>
+                                📧 vc@cusb.ac.in
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faculty-card">
+                        <div class="faculty-avatar">🎓</div>
+                        <div class="faculty-info">
+                            <div class="faculty-name">Dr. C. P. Thakur</div>
+                            <div class="faculty-designation">Chancellor, CUSB</div>
+                            <div class="faculty-subjects">
+                                <strong>Position:</strong> Chancellor<br>
+                                <strong>Institution:</strong> Central University of South Bihar<br>
+                                <strong>Location:</strong> CUSB Campus, Gaya<br>
+                                Overseeing academic excellence
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="color: var(--primary-color); margin-bottom: 15px;">Core Faculty</h3>
+            <div class="faculty-grid">
+                <div class="faculty-card">
+                    <div class="faculty-avatar">👨‍🎓</div>
+                    <div class="faculty-info">
+                        <div class="faculty-name">Prof. S. P. Srivastava</div>
+                        <div class="faculty-designation">Professor</div>
+                        <div class="faculty-subjects">
+                            <strong>Specialization:</strong> Intellectual Property Rights<br>
+                            <strong>Expertise:</strong> Cybersecurity Law<br>
+                            <strong>Institution:</strong> CUSB<br>
+                            <strong>Email:</strong> sp.srivastava@cusb.ac.in
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faculty-card">
+                    <div class="faculty-avatar">👨‍🎓</div>
+                    <div class="faculty-info">
+                        <div class="faculty-name">Prof. Pawan Kumar Mishra</div>
+                        <div class="faculty-designation">Professor</div>
+                        <div class="faculty-subjects">
+                            <strong>Specialization:</strong> Criminal Law<br>
+                            <strong>Expertise:</strong> Legal Research & Teaching<br>
+                            <strong>Institution:</strong> CUSB<br>
+                            <strong>Email:</strong> pk.mishra@cusb.ac.in
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faculty-card">
+                    <div class="faculty-avatar">👨‍🎓</div>
+                    <div class="faculty-info">
+                        <div class="faculty-name">Dr. Rajesh Kumar</div>
+                        <div class="faculty-designation">Assistant Professor</div>
+                        <div class="faculty-subjects">
+                            <strong>Specialization:</strong> Data Structures & Algorithms<br>
+                            <strong>Experience:</strong> 12 years<br>
+                            <strong>Courses:</strong> DS, Algorithms, Web Dev<br>
+                            <strong>Email:</strong> r.kumar@cusb.ac.in
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faculty-card">
+                    <div class="faculty-avatar">👩‍🎓</div>
+                    <div class="faculty-info">
+                        <div class="faculty-name">Dr. Priya Sharma</div>
+                        <div class="faculty-designation">Assistant Professor</div>
+                        <div class="faculty-subjects">
+                            <strong>Specialization:</strong> Database Systems<br>
+                            <strong>Experience:</strong> 9 years<br>
+                            <strong>Courses:</strong> Databases, SQL<br>
+                            <strong>Email:</strong> p.sharma@cusb.ac.in
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faculty-card">
+                    <div class="faculty-avatar">👨‍🎓</div>
+                    <div class="faculty-info">
+                        <div class="faculty-name">Prof. Arun Singh</div>
+                        <div class="faculty-designation">Assistant Professor</div>
+                        <div class="faculty-subjects">
+                            <strong>Specialization:</strong> Networks & Security<br>
+                            <strong>Experience:</strong> 8 years<br>
+                            <strong>Courses:</strong> Networking, Security<br>
+                            <strong>Email:</strong> a.singh@cusb.ac.in
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faculty-card">
+                    <div class="faculty-avatar">👩‍🎓</div>
+                    <div class="faculty-info">
+                        <div class="faculty-name">Dr. Neha Verma</div>
+                        <div class="faculty-designation">Assistant Professor</div>
+                        <div class="faculty-subjects">
+                            <strong>Specialization:</strong> Machine Learning<br>
+                            <strong>Experience:</strong> 7 years<br>
+                            <strong>Courses:</strong> ML, AI, Data Science<br>
+                            <strong>Email:</strong> n.verma@cusb.ac.in
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Academic Programs -->
+        <section class="dashboard-section" id="programs">
+            <div class="section-title">📚 Academic Programs & Courses</div>
+            <div class="section-grid">
+                <div class="card-item">
+                    <div class="card-item-title">M.Sc. Computer Science</div>
+                    <div class="card-item-content">
+                        <strong>Duration:</strong> 2 Years (4 Semesters)<br>
+                        <strong>Seats:</strong> 20 (Academic + Professional)<br>
+                        <strong>Admission Cycle:</strong> Mid-year via CUET<br>
+                        <strong>Semester Start:</strong> August (Monsoon Session)<br>
+                        <strong>Eligibility:</strong> B.Sc. Computer Science or IT<br>
+                        <strong>Total Credits:</strong> 80
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">M.Sc. Artificial Intelligence</div>
+                    <div class="card-item-content">
+                        <strong>Duration:</strong> 2 Years (4 Semesters)<br>
+                        <strong>Seats:</strong> 15 (Specialized Track)<br>
+                        <strong>Admission Cycle:</strong> Mid-year via CUET<br>
+                        <strong>Semester Start:</strong> August (Monsoon Session)<br>
+                        <strong>Eligibility:</strong> B.Sc. Mathematics, Physics, or CS<br>
+                        <strong>Total Credits:</strong> 80
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Ph.D. Computer Science</div>
+                    <div class="card-item-content">
+                        <strong>Duration:</strong> 3-5 Years<br>
+                        <strong>Current Scholars:</strong> 25+<br>
+                        <strong>Entry Mode:</strong> NET/GATE/CUET<br>
+                        <strong>Research Areas:</strong><br>
+                        • Artificial Intelligence & Machine Learning<br>
+                        • Data Structures & Algorithms<br>
+                        • Cybersecurity & Networks
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Semester 1-2 Curriculum</div>
+                    <div class="card-item-content">
+                        <strong>Core Courses:</strong><br>
+                        • Advanced Data Structures<br>
+                        • Database Management Systems<br>
+                        • Computer Networks<br>
+                        <strong>Electives:</strong> Machine Learning, Web Development<br>
+                        <strong>Practical:</strong> Lab projects & Internship<br>
+                        <button class="btn-primary" style="margin-top: 10px; width: 100%;">Download Syllabus</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timetable -->
+        <section class="timetable" id="timetable-dept">
+            <h2 style="color: var(--primary-color); margin-bottom: 15px;">⏰ Department Timetable (Semester 4)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Monday</th>
+                        <th>Tuesday</th>
+                        <th>Wednesday</th>
+                        <th>Thursday</th>
+                        <th>Friday</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>09:00 - 10:30</strong></td>
+                        <td>Data Structures (Dr. Rajesh) Lab-A</td>
+                        <td>Databases (Dr. Priya) Lab-B</td>
+                        <td>Web Dev (Dr. Sunita) Room 201</td>
+                        <td>Data Structures Lab-A</td>
+                        <td>Networks (Prof. Arun) Room 301</td>
+                    </tr>
+                    <tr>
+                        <td><strong>11:00 - 12:30</strong></td>
+                        <td>Operating Systems (Room 205)</td>
+                        <td>Data Structures Lab-A</td>
+                        <td>Java Programming Lab-B</td>
+                        <td>Databases Room 301</td>
+                        <td>Web Dev Lab-A</td>
+                    </tr>
+                    <tr>
+                        <td><strong>01:30 - 03:00</strong></td>
+                        <td>Networks Room 201</td>
+                        <td>Java Programming Lab-A</td>
+                        <td>Operating Systems Lab-B</td>
+                        <td>Web Dev Room 201</td>
+                        <td>Databases Lab-B</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Achievements & Rankings -->
+        <section class="dashboard-section" id="achievements">
+            <div class="section-title">🏆 Achievements & Rankings</div>
+            <div class="section-grid">
+                <div class="card-item">
+                    <div class="card-item-title">NAAC Accreditation</div>
+                    <div class="card-item-content">
+                        ⭐⭐⭐ Grade A<br>
+                        Cycle 3 (2022-2023)<br>
+                        Score: 3.34/4.00<br>
+                        <strong>Status:</strong> ✅ Accredited
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">National Rankings</div>
+                    <div class="card-item-content">
+                        📊 NIRF Ranking: 89<br>
+                        (Overall Engineering Category)<br><br>
+                        📊 NRRF Ranking: 45<br>
+                        (Computer Science Category - 2024)
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Research Publications</div>
+                    <div class="card-item-content">
+                        <strong>2023-2024:</strong> 28 papers<br>
+                        <strong>Journal Papers:</strong> 12<br>
+                        <strong>Conference Papers:</strong> 16<br>
+                        <strong>Books/Chapters:</strong> 3<br>
+                        <strong>Citations:</strong> 450+
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">International Collaboration</div>
+                    <div class="card-item-content">
+                        🤝 Partnerships: 8 universities<br>
+                        🌍 Countries: 6 (USA, UK, Canada, Germany, Japan, Singapore)<br>
+                        📚 Exchange Programs: Active<br>
+                        🎓 Joint Degrees: Offered
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Student Achievements</div>
+                    <div class="card-item-content">
+                        🥇 100% Placement Rate<br>
+                        💼 Avg Package: Rs. 8.5 LPA<br>
+                        🏆 National Olympiad Winners: 5<br>
+                        🎖️ Scholarship Winners: 12<br>
+                        ⭐ Best Student Awards: 3/year
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Industry Partnerships</div>
+                    <div class="card-item-content">
+                        🏢 Partner Companies: 15+<br>
+                        • Google, Microsoft, TCS<br>
+                        • Infosys, Wipro, HCL<br>
+                        • IBM, Amazon, Adobe<br>
+                        🔗 Internship Placements: 80+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Information -->
+        <section class="dashboard-section" id="contact">
+            <div class="section-title">📞 Contact Information</div>
+            <div class="section-grid">
+                <div class="card-item">
+                    <div class="card-item-title">Department Office</div>
+                    <div class="card-item-content">
+                        📍 Location: Department of Computer Science, CUSB Campus, Gaya<br>
+                        📍 Address: NH-120, Gaya Panchanpur Road, Karhara, Fatehpur, Gaya – 824236<br>
+                        📞 Reception: +91-631-2229 530<br>
+                        📞 Information: +91-631-2229 507<br>
+                        📧 Email: department@cusb.ac.in<br>
+                        🌐 Website: www.cusb.ac.in
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">University Contact</div>
+                    <div class="card-item-content">
+                        <strong>Registrar:</strong><br>
+                        📧 registrar@cub.ac.in<br><br>
+                        <strong>Admission:</strong><br>
+                        📧 admission@cusb.ac.in<br>
+                        📞 Helpline: +91-9472979367<br>
+                        📞 Admission: +91-631-2229 514/518
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Facilities & Resources</div>
+                    <div class="card-item-content">
+                        🖥️ Computer Labs: 8<br>
+                        📚 Library E-Books: 500+<br>
+                        🔬 Research Center: 2<br>
+                        📡 High-speed Internet: 100 Mbps<br>
+                        🎙️ Seminar Hall: 150 capacity
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Quick Links</div>
+                    <div class="card-item-content">
+                        <button class="btn-primary" style="margin-top: 10px; width: 100%; margin-bottom: 5px;">Apply for Admission</button>
+                        <button class="btn-primary" style="margin-top: 5px; width: 100%; margin-bottom: 5px;">Download Prospectus</button>
+                        <button class="btn-primary" style="margin-top: 5px; width: 100%;">Feedback Form</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Latest News from Department -->
+        <section class="dashboard-section">
+            <div class="section-title">📰 Latest News</div>
+            <div class="notice-container">
+                <div class="notice event">
+                    <div class="notice-header">
+                        <div class="notice-title">Guest Lecture: AI Ethics & Society</div>
+                        <span class="notice-badge badge-event">EVENT</span>
+                    </div>
+                    <p>Prof. Peter Smith from Stanford University will deliver a guest lecture on ethical implications of AI. Date: 28 Feb, 3 PM, Seminar Hall. All students invited!</p>
+                </div>
+
+                <div class="notice academic">
+                    <div class="notice-header">
+                        <div class="notice-title">Research Grant Awarded</div>
+                        <span class="notice-badge badge-academic">ACADEMIC</span>
+                    </div>
+                    <p>Dr. Rajesh Kumar's research project on "Efficient Graph Algorithms" has been awarded Rs. 25 lakhs by CSIR. Congratulations to the entire research team!</p>
+                </div>
+
+                <div class="notice academic">
+                    <div class="notice-header">
+                        <div class="notice-title">Student Success: Published in IEEE</div>
+                        <span class="notice-badge badge-academic">ACADEMIC</span>
+                    </div>
+                    <p>Priya Sharma (PhD Scholar) published her research paper "Deep Learning for Image Recognition" in IEEE Transactions on Computers. Proud moment for the department!</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <p>&copy; 2026 Smart Academic Portal | Department of Computer Science</p>
+        <p>Central University of South Bihar | Excellence in Education</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

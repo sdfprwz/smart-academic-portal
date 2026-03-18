@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Smart Academic Portal - A student-first digital academic ecosystem">
+    <meta name="keywords" content="academic, university, portal, student, faculty">
+    <title>Smart Academic Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Navigation Bar -->
+    <div class="navbar-top">
+        <button class="hamburger-btn" onclick="toggleSideMenu()" title="Open menu" aria-label="Open navigation menu">☰</button>
+        <div style="flex: 1;"></div>
+        <button class="theme-toggle" onclick="toggleDarkMode()" title="Toggle dark mode" aria-label="Toggle dark mode">🌙 Dark Mode</button>
+        <button class="lang-toggle" onclick="toggleLanguage()" title="Change language" aria-label="Change language">हिंदी</button>
+    </div>
+
+    <!-- Side Navigation Menu -->
+    <div id="sideMenu" class="side-menu">
+        <button class="close-menu-btn" onclick="toggleSideMenu()" title="Close menu" aria-label="Close menu">✕</button>
+        <nav class="side-nav">
+            <a href="index.html" class="side-nav-link" onclick="toggleSideMenu()">🏠 Home</a>
+            <a href="about.html" class="side-nav-link" onclick="toggleSideMenu()">ℹ️ About the Project</a>
+            <div class="side-nav-section">
+                <span class="side-nav-title">📚 Departments</span>
+                <a href="department.html" class="side-nav-link side-nav-sub" onclick="toggleSideMenu()">💻 Computer Science</a>
+                <a href="mathematics.html" class="side-nav-link side-nav-sub" onclick="toggleSideMenu()">🧮 Mathematics</a>
+            </div>
+            <a href="faculty.html" class="side-nav-link" onclick="toggleSideMenu()">👨‍🏫 Faculty</a>
+            <a href="student.html" class="side-nav-link" onclick="toggleSideMenu()">🎓 Students</a>
+            <a href="research.html" class="side-nav-link" onclick="toggleSideMenu()">🔬 Research (Public)</a>
+            <a href="research_portal.html" id="researchLink" class="side-nav-link" style="display:none;" onclick="toggleSideMenu()">🔬 Research Portal</a>
+            <a href="calendar.html" class="side-nav-link" onclick="toggleSideMenu()">📅 Academic Calendar</a>
+            <a href="notices.html" class="side-nav-link" onclick="toggleSideMenu()">📢 Notices</a>
+            <a href="admin.html" class="side-nav-link" onclick="toggleSideMenu()">🏛️ Administration</a>
+            <!-- authentication links -->
+            <a href="login.html" id="loginLink" class="side-nav-link" onclick="toggleSideMenu()">
+                <span class="card-emoji">🔒</span> <span data-i18n="login">Login</span>
+            </a>
+            <a href="javascript:logoutUser()" id="logoutLink" class="side-nav-link" style="display:none;">
+                <span class="card-emoji">🔓</span> <span data-i18n="logout">Logout</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Side Menu Overlay -->
+    <div id="sideMenuOverlay" class="side-menu-overlay" onclick="toggleSideMenu()"></div>
+
+    <!-- Header -->
+<header role="banner">
+    <div class="header-container">
+        <a href="/index.html" aria-label="Go to homepage">
+            <img src="images/logo-new3.png" alt="CUSB Logo" class="header-logo">
+        </a>
+
+        <div class="header-title">
+            <h1>Smart Academic Portal</h1>
+            <p class="tagline">A Student-First Digital Ecosystem</p>
+            <p class="motto">ज्ञान सेवा विमुक्तये <span>(Knowledge, Service, Liberation)</span></p>
+        </div>
+
+        <img src="images/naac2.png" alt="NAAC Accredited A Grade" class="header-logo">
+    </div>
+</header>
+
+    <!-- Smart Search Bar -->
+    <div class="search">
+        <input 
+            type="text" 
+            id="searchBox" 
+            data-i18n-placeholder="search_placeholder"
+            placeholder="Search notices, syllabus, faculty..."
+            aria-label="Search for notices, faculty, or departments"
+        >
+        <button onclick="smartSearch()" data-i18n="search_btn" aria-label="Search">Search</button>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Campus Image -->
+        <section class="dashboard-section">
+            <img src="images/gate_pic.jpg" alt="CUSB Campus Gate" style="width: 100%; max-height: 400px; object-fit: cover; border-radius: 8px; margin-bottom: 30px;">
+        </section>
+
+        <!-- Role Selection -->
+        <section class="dashboard-section">
+            <div class="section-title" data-i18n="select_role_title">Select Your Role</div>
+            
+            <div class="roles">
+                <!-- Student Role -->
+                <a href="login.html?role=student" class="card" title="Access student portal">
+                    <span class="card-emoji">🎓</span>
+                    <span class="card-title" data-i18n="student">Student</span>
+                    <span class="card-description">Notices, Calendar, Syllabus</span>
+                </a>
+
+                <!-- Faculty Role -->
+                <a href="login.html?role=faculty" class="card" title="Access faculty portal">
+                    <span class="card-emoji">👨‍🏫</span>
+                    <span class="card-title" data-i18n="faculty">Faculty</span>
+                    <span class="card-description">Profile, Upload Resources</span>
+                </a>
+
+                <!-- Research Scholar Role -->
+                <a href="login.html?role=research" class="card" title="Access research portal">
+                    <span class="card-emoji">🔬</span>
+                    <span class="card-title" data-i18n="research">Research Scholar</span>
+                    <span class="card-description">Projects, Publications, Supervisors</span>
+                </a>
+
+                <!-- Administration Role -->
+                <a href="login.html?role=admin" class="card" title="Access admin panel">
+                    <span class="card-emoji">🏛️</span>
+                    <span class="card-title" data-i18n="admin">Administration</span>
+                    <span class="card-description">Manage Content & Users</span>
+                </a>
+
+                <!-- Visitor Role -->
+                <a href="department.html" class="card" title="Computer Science Department">
+                    <span class="card-emoji">💻</span>
+                    <span class="card-title">Computer Science</span>
+                    <span class="card-description">Department Overview</span>
+                </a>
+
+                <!-- Mathematics Department -->
+                <a href="mathematics.html" class="card" title="Mathematics Department">
+                    <span class="card-emoji">🧮</span>
+                    <span class="card-title">Mathematics</span>
+                    <span class="card-description">Department Overview</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Features Overview -->
+        <section class="dashboard-section">
+            <div class="section-title" data-i18n="key_features">Key Features</div>
+            
+            <div class="roles">
+                <div class="card">
+                    <span class="card-emoji">📢</span>
+                    <span class="card-title" data-i18n="smart_notice_board">Smart Notice Board</span>
+                    <span class="card-description">Categorized & prioritized notices with auto-expiry</span>
+                </div>
+
+                <div class="card">
+                    <span class="card-emoji">📚</span>
+                    <span class="card-title" data-i18n="academic_resources">Academic Resources</span>
+                    <span class="card-description">Syllabus, lecture notes, and downloadable materials</span>
+                </div>
+
+                <div class="card">
+                    <span class="card-emoji">🌍</span>
+                    <span class="card-title" data-i18n="multilingual_support">Multilingual Support</span>
+                    <span class="card-description">English and Hindi language support</span>
+                </div>
+
+                <div class="card">
+                    <span class="card-emoji">🌙</span>
+                    <span class="card-title" data-i18n="dark_mode_feature">Dark Mode</span>
+                    <span class="card-description">Easy on the eyes with dark theme support</span>
+                </div>
+
+                <div class="card">
+                    <span class="card-emoji">📱</span>
+                    <span class="card-title" data-i18n="mobile_responsive">Mobile Responsive</span>
+                    <span class="card-description">Works seamlessly on all devices</span>
+                </div>
+
+                <div class="card">
+                    <span class="card-emoji">♿</span>
+                    <span class="card-title" data-i18n="accessible_design">Accessible Design</span>
+                    <span class="card-description">WCAG compliant for inclusive access</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Browse Departments -->
+        <section class="dashboard-section">
+            <div class="section-title" data-i18n="browse_departments">🏛️ Browse Academic Departments</div>
+            
+            <div class="roles">
+                <a href="department.html" class="card" title="Computer Science Department">
+                    <span class="card-emoji">💻</span>
+                    <span class="card-title">Computer Science</span>
+                    <span class="card-description">M.Sc. | Ph.D. | Data Science</span>
+                </a>
+
+                <a href="mathematics.html" class="card" title="Mathematics Department">
+                    <span class="card-emoji">🧮</span>
+                    <span class="card-title">Mathematics</span>
+                    <span class="card-description">5-Year Int. | M.Sc. | Ph.D.</span>
+                </a>
+
+                <a href="#" class="card" title="More departments coming soon" style="opacity: 0.6;">
+                    <span class="card-emoji">📚</span>
+                    <span class="card-title">More Departments</span>
+                    <span class="card-description">Physics, Chemistry, Law...</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Quick Links -->
+        <section class="dashboard-section">
+            <div class="section-title" data-i18n="quick_links">Quick Links</div>
+            
+            <div class="roles">
+                <a href="about.html" class="card" title="Learn about the project">
+                    <span class="card-emoji">ℹ️</span>
+                    <span class="card-title">About the Project</span>
+                </a>
+
+                <a href="notices.html" class="card" title="View all notices">
+                    <span class="card-emoji">📌</span>
+                    <span class="card-title" data-i18n="notice_board">Notice Board</span>
+                </a>
+
+                <a href="calendar.html" class="card" title="View academic calendar">
+                    <span class="card-emoji">📅</span>
+                    <span class="card-title" data-i18n="calendar">Academic Calendar</span>
+                </a>
+
+                <a href="department.html" class="card" title="Department information">
+                    <span class="card-emoji">🏢</span>
+                    <span class="card-title" data-i18n="department_info">Department Info</span>
+                </a>
+
+                <a href="student.html" class="card" title="Student syllabus">
+                    <span class="card-emoji">📖</span>
+                    <span class="card-title" data-i18n="syllabus">Syllabus</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+    <p>© 2026 Smart Academic Portal</p>
+    <p class="footer-note">
+        Prototype developed for <strong>The Web-Weavers: Smart Design for an Academic Website</strong> competition
+    </p>
+    <p class="footer-credit">
+        Designed & developed by <strong>SADAF PERWEZ</strong>, Department of Mathematics, Central University of South Bihar
+    </p>
+    <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 10px;">
+         This portal is an interactive design prototype. 
+         User inputs demonstrate intended workflows; backend integration and data persistence are part of future scope.
+    </p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/script.js"></script>
+</body>
+</html>s

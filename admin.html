@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration Panel - Smart Academic Portal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Navigation Bar -->
+    <div class="navbar-top">
+        <button class="hamburger-btn" onclick="toggleSideMenu()" title="Open menu" aria-label="Open navigation menu">☰</button>
+        <div style="flex: 1;"></div>
+        <button class="theme-toggle" onclick="toggleDarkMode()" title="Toggle dark mode">🌙 Dark Mode</button>
+        <button class="lang-toggle" onclick="toggleLanguage()" title="Change language">हिंदी</button>
+    </div>
+
+    <!-- Side Navigation Menu -->
+    <div id="sideMenu" class="side-menu">
+        <button class="close-menu-btn" onclick="toggleSideMenu()" title="Close menu" aria-label="Close menu">✕</button>
+        <nav class="side-nav">
+            <a href="index.html" class="side-nav-link" onclick="toggleSideMenu()">🏠 Home</a>
+            <div class="side-nav-section">
+                <span class="side-nav-title">📚 Departments</span>
+                <a href="department.html" class="side-nav-link side-nav-sub" onclick="toggleSideMenu()">💻 Computer Science</a>
+                <a href="mathematics.html" class="side-nav-link side-nav-sub" onclick="toggleSideMenu()">🧮 Mathematics</a>
+            </div>
+            <a href="faculty.html" class="side-nav-link" onclick="toggleSideMenu()">👨‍🏫 Faculty</a>
+            <a href="student.html" class="side-nav-link" onclick="toggleSideMenu()">🎓 Students</a>
+            <a href="research.html" class="side-nav-link" onclick="toggleSideMenu()">🔬 Research (Public)</a>
+            <a href="research_portal.html" id="researchLink" class="side-nav-link" style="display:none;" onclick="toggleSideMenu()">🔬 Research Portal</a>
+            <a href="calendar.html" class="side-nav-link" onclick="toggleSideMenu()">📅 Academic Calendar</a>
+            <a href="notices.html" class="side-nav-link" onclick="toggleSideMenu()">📢 Notices</a>
+            <a href="admin.html" class="side-nav-link" onclick="toggleSideMenu()">🏛️ Administration</a>
+            <!-- authentication links -->
+            <a href="login.html" id="loginLink" class="side-nav-link" onclick="toggleSideMenu()">
+                <span class="card-emoji">🔒</span> <span data-i18n="login">Login</span>
+            </a>
+            <a href="javascript:logoutUser()" id="logoutLink" class="side-nav-link" style="display:none;">
+                <span class="card-emoji">🔓</span> <span data-i18n="logout">Logout</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Side Menu Overlay -->
+    <div id="sideMenuOverlay" class="side-menu-overlay" onclick="toggleSideMenu()"></div>
+
+    <!-- Department Hero Section -->
+    <div class="department-hero">
+        <a href="index.html">
+            <img src="images/logo-new3.png" class="header-logo">
+        </a>
+        <h1>🏛️ Administration Panel</h1>
+        <p>Central University of South Bihar</p>
+        <p style="margin-top: 10px; font-size: 0.95rem;">Campus Management System - Notices, Users, Departments & Operations</p>
+    </div>
+
+    <div id="greeting" style="text-align:right; padding: 0 20px; font-size:0.9rem;"></div>
+
+    <!-- Smart Search -->
+    <div class="search">
+        <input 
+            type="text" 
+            id="searchBox" 
+            placeholder="Search notices, syllabus, faculty..."
+            aria-label="Search admin panel"
+        >
+        <button onclick="smartSearch()">Search</button>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Admin Dashboard Overview -->
+        <section class="dashboard-section">
+            <div class="section-title">📊 System Overview</div>
+            <div class="section-grid">
+                <div class="card-item">
+                    <div class="card-item-title">Total Users</div>
+                    <div class="card-item-content" style="font-size: 2rem; font-weight: bold; color: var(--secondary-color);">
+                        2,485
+                    </div>
+                    <div style="font-size: 0.9rem; margin-top: 10px;">
+                        👤 Students: 1,850<br>
+                        👨‍🏫 Faculty: 120<br>
+                        🔬 Researchers: 85<br>
+                        👥 Staff: 430
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Active Notices</div>
+                    <div class="card-item-content" style="font-size: 2rem; font-weight: bold; color: var(--warning-color);">
+                        27
+                    </div>
+                    <div style="font-size: 0.9rem; margin-top: 10px;">
+                        🔴 Urgent: 5<br>
+                        🔵 Academic: 12<br>
+                        🟡 Events: 10
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">System Status</div>
+                    <div class="card-item-content" style="font-size: 2rem; font-weight: bold; color: var(--success-color);">
+                        ✓ Online
+                    </div>
+                    <div style="font-size: 0.9rem; margin-top: 10px;">
+                        Uptime: 99.8%<br>
+                        Last Backup: 22 Feb 2026<br>
+                        Server: Healthy
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Database Info</div>
+                    <div class="card-item-content" style="font-size: 2rem; font-weight: bold; color: var(--secondary-color);">
+                        15 GB
+                    </div>
+                    <div style="font-size: 0.9rem; margin-top: 10px;">
+                        Storage Used: 68%<br>
+                        Available: 7.2 GB<br>
+                        Growth Rate: 0.5 GB/month
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="dashboard-section">
+            <div class="section-title">⚡ Quick Actions</div>
+            <div class="roles">
+                <a href="#notices" class="card" title="Manage notices">
+                    <span class="card-emoji">📢</span>
+                    <span class="card-title" data-i18n="notices">Manage Notices</span>
+                    <span class="card-description">Create & Edit</span>
+                </a>
+
+                <a href="#users" class="card" title="User management">
+                    <span class="card-emoji">👥</span>
+                    <span class="card-title">User Management</span>
+                    <span class="card-description">Add/Remove Users</span>
+                </a>
+
+                <a href="#departments" class="card" title="Department management">
+                    <span class="card-emoji">🏢</span>
+                    <span class="card-title" data-i18n="department">Departments</span>
+                    <span class="card-description">Manage Depts</span>
+                </a>
+
+                <a href="#archive" class="card" title="Archive">
+                    <span class="card-emoji">🗄️</span>
+                    <span class="card-title">Archives</span>
+                    <span class="card-description">Old Content</span>
+                </a>
+
+                <a href="#reports" class="card" title="Generate reports">
+                    <span class="card-emoji">📈</span>
+                    <span class="card-title">Reports</span>
+                    <span class="card-description">Analytics</span>
+                </a>
+
+                <a href="#settings" class="card" title="System settings">
+                    <span class="card-emoji">⚙️</span>
+                    <span class="card-title">Settings</span>
+                    <span class="card-description">Configuration</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Notice Management -->
+        <section class="admin-section" id="notices">
+            <div class="section-title">📢 Notice Management</div>
+            
+            <div style="background-color: var(--card-bg); padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px var(--card-shadow); margin-bottom: 30px;">
+                <h3 style="color: var(--primary-color); margin-bottom: 15px;">Create New Notice</h3>
+                
+                <div class="form-group">
+                    <label for="notice-title-admin">Notice Title:</label>
+                    <input type="text" id="notice-title-admin" placeholder="Enter notice title">
+                </div>
+
+                <div class="form-group">
+                    <label for="notice-category-admin">Category:</label>
+                    <select id="notice-category-admin">
+                        <option value="">-- Select category --</option>
+                        <option value="urgent">Urgent</option>
+                        <option value="academic">Academic</option>
+                        <option value="event">Event</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="notice-content-admin">Content:</label>
+                    <textarea id="notice-content-admin" placeholder="Enter detailed content..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="notice-expiry-admin">Expiry Date:</label>
+                    <input type="date" id="notice-expiry-admin">
+                </div>
+
+                <button class="btn-primary" onclick="alert('Notice created (Prototype)')">Create Notice</button>
+            </div>
+
+            <h3 style="color: var(--primary-color); margin-bottom: 15px;">Recent Notices</h3>
+            <div class="timetable">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Category</th>
+                            <th>Posted Date</th>
+                            <th>Expiry</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Exam Form Deadline Extended</td>
+                            <td><span style="background: #e74c3c; color: white; padding: 3px 8px; border-radius: 3px;">Urgent</span></td>
+                            <td>25 Feb 2026</td>
+                            <td>10 Mar 2026</td>
+                            <td>✅ Active</td>
+                            <td><button class="btn-primary" style="padding: 5px 10px; font-size: 0.9rem;">Edit</button></td>
+                        </tr>
+                        <tr>
+                            <td>Semester Exams Schedule</td>
+                            <td><span style="background: #3498db; color: white; padding: 3px 8px; border-radius: 3px;">Academic</span></td>
+                            <td>22 Feb 2026</td>
+                            <td>31 Mar 2026</td>
+                            <td>✅ Active</td>
+                            <td><button class="btn-primary" style="padding: 5px 10px; font-size: 0.9rem;">Edit</button></td>
+                        </tr>
+                        <tr>
+                            <td>AI Workshop Event</td>
+                            <td><span style="background: #f39c12; color: white; padding: 3px 8px; border-radius: 3px;">Event</span></td>
+                            <td>20 Feb 2026</td>
+                            <td>25 Mar 2026</td>
+                            <td>✅ Active</td>
+                            <td><button class="btn-primary" style="padding: 5px 10px; font-size: 0.9rem;">Edit</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- User Management -->
+        <section class="admin-section" id="users">
+            <div class="section-title">👥 User Management</div>
+            
+            <div style="background-color: var(--card-bg); padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px var(--card-shadow); margin-bottom: 30px;">
+                <h3 style="color: var(--primary-color); margin-bottom: 15px;">Add New User</h3>
+                
+                <div class="form-group">
+                    <label for="user-name">Full Name:</label>
+                    <input type="text" id="user-name" placeholder="Enter full name">
+                </div>
+
+                <div class="form-group">
+                    <label for="user-email">Email:</label>
+                    <input type="email" id="user-email" placeholder="Enter email address">
+                </div>
+
+                <div class="form-group">
+                    <label for="user-role">User Role:</label>
+                    <select id="user-role">
+                        <option value="">-- Select role --</option>
+                        <option value="student">Student</option>
+                        <option value="faculty">Faculty</option>
+                        <option value="researcher">Research Scholar</option>
+                        <option value="staff">Staff</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="user-dept">Department:</label>
+                    <select id="user-dept">
+                        <option value="">-- Select department --</option>
+                        <option value="cs">Computer Science</option>
+                        <option value="eng">Civil Engineering</option>
+                        <option value="mech">Mechanical Engineering</option>
+                        <option value="physics">Physics</option>
+                    </select>
+                </div>
+
+                <button class="btn-primary" onclick="alert('User created (Prototype)')">Create User</button>
+            </div>
+
+            <h3 style="color: var(--primary-color); margin-bottom: 15px;">User List</h3>
+            <div class="timetable">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Department</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Dr. Rajesh Kumar</td>
+                            <td>r.kumar@cusb.ac.in</td>
+                            <td>Faculty</td>
+                            <td>Computer Science</td>
+                            <td>✅ Active</td>
+                            <td><button class="btn-primary" style="padding: 5px 10px; font-size: 0.9rem;">Edit</button></td>
+                        </tr>
+                        <tr>
+                            <td>Priya Sharma</td>
+                            <td>priya.sharma@cusb.ac.in</td>
+                            <td>Research Scholar</td>
+                            <td>Computer Science</td>
+                            <td>✅ Active</td>
+                            <td><button class="btn-primary" style="padding: 5px 10px; font-size: 0.9rem;">Edit</button></td>
+                        </tr>
+                        <tr>
+                            <td>Amit Patel</td>
+                            <td>amit.patel@cusb.ac.in</td>
+                            <td>Student</td>
+                            <td>Computer Science</td>
+                            <td>✅ Active</td>
+                            <td><button class="btn-primary" style="padding: 5px 10px; font-size: 0.9rem;">Edit</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Department Management -->
+        <section class="admin-section" id="departments">
+            <div class="section-title">🏢 Department Management</div>
+            <div class="section-grid">
+                <div class="card-item">
+                    <div class="card-item-title">Computer Science</div>
+                    <div class="card-item-content">
+                        <strong>Head:</strong> Dr. Rajesh Kumar<br>
+                        <strong>Faculty:</strong> 15+<br>
+                        <strong>Programs:</strong> M.Sc., Ph.D.<br>
+                        <strong>Students:</strong> 60+<br>
+                        <button class="btn-primary" style="margin-top: 10px; width: 100%;">Manage</button>
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Physics</div>
+                    <div class="card-item-content">
+                        <strong>Faculty:</strong> 12<br>
+                        <strong>Programs:</strong> M.Sc., Ph.D.<br>
+                        <strong>Students:</strong> 45<br>
+                        <strong>Specialization:</strong> Theoretical<br>
+                        <button class="btn-primary" style="margin-top: 10px; width: 100%;">Manage</button>
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Mathematics</div>
+                    <div class="card-item-content">
+                        <strong>Faculty:</strong> 10<br>
+                        <strong>Programs:</strong> M.Sc., Ph.D.<br>
+                        <strong>Students:</strong> 35<br>
+                        <strong>Focus:</strong> Applied Mathematics<br>
+                        <button class="btn-primary" style="margin-top: 10px; width: 100%;">Manage</button>
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Add Department</div>
+                    <div class="card-item-content">
+                        <input type="text" placeholder="Department name" style="width: 100%; padding: 8px; margin-bottom: 10px;">
+                        <input type="text" placeholder="Department head" style="width: 100%; padding: 8px; margin-bottom: 10px;">
+                        <button class="btn-primary" style="margin-top: 10px; width: 100%;">Create</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Archive Management -->
+        <section class="admin-section" id="archive">
+            <div class="section-title">🗄️ Archive Management</div>
+            <div class="section-grid">
+                <div class="card-item">
+                    <div class="card-item-title">Notices Archive</div>
+                    <div class="card-item-content">
+                        <strong>Archived Notices:</strong> 156<br>
+                        <strong>Storage Used:</strong> 45 MB<br>
+                        <strong>Latest:</strong> Feb 2026<br>
+                        <button class="btn-primary" style="margin-top: 10px; width: 100%;">View Archive</button>
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Old Content</div>
+                    <div class="card-item-content">
+                        <strong>Archived Pages:</strong> 89<br>
+                        <strong>Storage Used:</strong> 120 MB<br>
+                        <strong>Retention:</strong> 2 years<br>
+                        <button class="btn-primary" style="margin-top: 10px; width: 100%;">Clean Archive</button>
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Backup Status</div>
+                    <div class="card-item-content">
+                        <strong>Last Backup:</strong> 22 Feb 16:30<br>
+                        <strong>Backup Size:</strong> 2.5 GB<br>
+                        <strong>Frequency:</strong> Daily<br>
+                        <button class="btn-primary" style="margin-top: 10px; width: 100%;">Backup Now</button>
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Restore Options</div>
+                    <div class="card-item-content">
+                        <button class="btn-primary" style="margin-top: 10px; width: 100%; margin-bottom: 10px;">Restore Latest</button>
+                        <button class="btn-primary" style="margin-top: 10px; width: 100%;">Select Date</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reports -->
+        <section class="admin-section" id="reports">
+            <div class="section-title">📈 System Reports</div>
+            <div class="section-grid">
+                <div class="card-item">
+                    <div class="card-item-title">User Activity Report</div>
+                    <div class="card-item-content">
+                        <button class="btn-primary" style="margin-top: 10px; width: 100%; margin-bottom: 5px;">View Report</button>
+                        <button class="btn-primary" style="margin-top: 5px; width: 100%;">Download PDF</button>
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Traffic Analytics</div>
+                    <div class="card-item-content">
+                        <button class="btn-primary" style="margin-top: 10px; width: 100%; margin-bottom: 5px;">View Report</button>
+                        <button class="btn-primary" style="margin-top: 5px; width: 100%;">Download PDF</button>
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Enrollment Report</div>
+                    <div class="card-item-content">
+                        <button class="btn-primary" style="margin-top: 10px; width: 100%; margin-bottom: 5px;">View Report</button>
+                        <button class="btn-primary" style="margin-top: 5px; width: 100%;">Download Excel</button>
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-item-title">Audit Log</div>
+                    <div class="card-item-content">
+                        <button class="btn-primary" style="margin-top: 10px; width: 100%; margin-bottom: 5px;">View Logs</button>
+                        <button class="btn-primary" style="margin-top: 5px; width: 100%;">Export CSV</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- System Settings -->
+        <section class="admin-section" id="settings">
+            <div class="section-title">⚙️ System Settings</div>
+            <div style="background-color: var(--card-bg); padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px var(--card-shadow);">
+                <div class="form-group">
+                    <label for="site-name">Site Name:</label>
+                    <input type="text" id="site-name" value="Central University of South Bihar - Smart Portal">
+                </div>
+
+                <div class="form-group">
+                    <label for="site-desc">Site Description:</label>
+                    <textarea id="site-desc">Student-first academic portal for CUSB - Excellence in Teaching, Research & Innovation</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="site-email">Admin Email:</label>
+                    <input type="email" id="site-email" value="admin@cusb.ac.in">
+                </div>
+
+                <div class="form-group">
+                    <label for="max-upload">Max Upload Size (MB):</label>
+                    <input type="number" id="max-upload" value="100">
+                </div>
+
+                <div class="form-group">
+                    <label for="session-timeout">Session Timeout (minutes):</label>
+                    <input type="number" id="session-timeout" value="30">
+                </div>
+
+                <button class="btn-primary" onclick="alert('Settings saved (Prototype)')">Save Settings</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <p>&copy; 2026 Smart Academic Portal | Central University of South Bihar</p>
+        <p>Contact: +91-631-2229 530 | registrar@cub.ac.in</p>
+        <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 10px;">
+             This portal is an interactive design prototype. 
+            User inputs demonstrate intended workflows; backend integration and data persistence are part of future scope.
+        </p>   
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        checkRole('admin');
+    </script>
+</body>
+</html>

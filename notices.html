@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Notice Board - Central University of South Bihar</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Navigation Bar -->
+    <div class="navbar-top">
+        <button class="hamburger-btn" onclick="toggleSideMenu()" title="Open menu" aria-label="Open navigation menu">☰</button>
+        <div style="flex: 1;"></div>
+        <button class="theme-toggle" onclick="toggleDarkMode()" title="Toggle dark mode">🌙 Dark Mode</button>
+        <button class="lang-toggle" onclick="toggleLanguage()" title="Change language">हिंदी</button>
+    </div>
+
+    <!-- Side Navigation Menu -->
+    <div id="sideMenu" class="side-menu">
+        <button class="close-menu-btn" onclick="toggleSideMenu()" title="Close menu" aria-label="Close menu">✕</button>
+        <nav class="side-nav">
+            <a href="index.html" class="side-nav-link" onclick="toggleSideMenu()">🏠 Home</a>
+            <div class="side-nav-section">
+                <span class="side-nav-title">📚 Departments</span>
+                <a href="department.html" class="side-nav-link side-nav-sub" onclick="toggleSideMenu()">💻 Computer Science</a>
+                <a href="mathematics.html" class="side-nav-link side-nav-sub" onclick="toggleSideMenu()">🧮 Mathematics</a>
+            </div>
+            <a href="faculty.html" class="side-nav-link" onclick="toggleSideMenu()">👨‍🏫 Faculty</a>
+            <a href="student.html" class="side-nav-link" onclick="toggleSideMenu()">🎓 Students</a>
+            <a href="research.html" class="side-nav-link" onclick="toggleSideMenu()">🔬 Research (Public)</a>
+            <a href="research_portal.html" id="researchLink" class="side-nav-link" style="display:none;" onclick="toggleSideMenu()">🔬 Research Portal</a>
+            <a href="calendar.html" class="side-nav-link" onclick="toggleSideMenu()">📅 Academic Calendar</a>
+            <a href="notices.html" class="side-nav-link" onclick="toggleSideMenu()">📢 Notices</a>
+            <a href="admin.html" class="side-nav-link" onclick="toggleSideMenu()">🏛️ Administration</a>
+            <!-- authentication links -->
+            <a href="login.html" id="loginLink" class="side-nav-link" onclick="toggleSideMenu()">
+                <span class="card-emoji">🔒</span> <span data-i18n="login">Login</span>
+            </a>
+            <a href="javascript:logoutUser()" id="logoutLink" class="side-nav-link" style="display:none;">
+                <span class="card-emoji">🔓</span> <span data-i18n="logout">Logout</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Side Menu Overlay -->
+    <div id="sideMenuOverlay" class="side-menu-overlay" onclick="toggleSideMenu()"></div>
+
+    <!-- Department Hero Section -->
+    <div class="department-hero">
+        <a href="index.html">
+            <img src="images/logo-new3.png" class="header-logo">
+        </a>
+        <h1>📢 Smart Notice Board</h1>
+        <p>Central University of South Bihar</p>
+        <p style="margin-top: 10px; font-size: 0.95rem;">Latest Announcements & Updates</p>
+    </div>
+
+    <!-- Smart Search -->
+    <div class="search">
+        <input 
+            type="text" 
+            id="searchBox" 
+            placeholder="Search notices, syllabus, faculty..."
+            aria-label="Search notices"
+        >
+        <button onclick="smartSearch()">Search</button>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Filter Section -->
+        <section class="dashboard-section">
+            <div class="section-title" data-i18n="filter_notices">🔍 Filter Notices</div>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px;">
+                <button class="btn-primary" onclick="filterNotices('all')" style="flex: 1; min-width: 100px;" data-i18n="filter_all">All Notices</button>
+                <button class="btn-primary" onclick="filterNotices('urgent')" style="flex: 1; min-width: 100px; background: #e74c3c;">🔴 <span data-i18n="urgent">Urgent</span></button>
+                <button class="btn-primary" onclick="filterNotices('academic')" style="flex: 1; min-width: 100px; background: #3498db;">🔵 <span data-i18n="academic">Academic</span></button>
+                <button class="btn-primary" onclick="filterNotices('event')" style="flex: 1; min-width: 100px; background: #f39c12;">🟡 <span data-i18n="events">Events</span></button>
+            </div>
+        </section>
+
+        <!-- Notices Section -->
+        <section class="dashboard-section">
+            <div id="notices-container">
+                <!-- Notices will be dynamically filtered here -->
+                
+                <div class="notice urgent">
+                    <div class="notice-header">
+                        <div class="notice-title">M.Sc. Semester 2 Exam Form Submission</div>
+                        <span class="notice-badge badge-urgent">🔴 URGENT</span>
+                    </div>
+                    <div class="notice-meta">
+                        <span>📅 Posted: 24 Feb 2026</span>
+                        <span>⏰ Expires: 10 Mar 2026</span>
+                    </div>
+                    <p><strong>Last Date:</strong> 10 March 2026 at 5:00 PM</p>
+                    <p>All M.Sc. students must submit their semester examination forms online through the CUSB portal. Form filling instructions and guidelines available on department.html. Fees: Rs. 500 per course.</p>
+                    <p><strong>Contact:</strong> registrar@cub.ac.in | Phone: +91-631-2229 514</p>
+                </div>
+
+                <div class="notice urgent">
+                    <div class="notice-header">
+                        <div class="notice-title">Hostel Bond Renewal Deadline</div>
+                        <span class="notice-badge badge-urgent">🔴 URGENT</span>
+                    </div>
+                    <div class="notice-meta">
+                        <span>📅 Posted: 22 Feb 2026</span>
+                        <span>⏰ Expires: 28 Feb 2026</span>
+                    </div>
+                    <p><strong>Renewal Deadline:</strong> 28 February 2026</p>
+                    <p>All hostel residents must renew their bond and complete security deposit. Renewal fee: Rs. 1000. Failure to renew will result in eviction from hostel premises. Contact Warden on duty at hostel office.</p>
+                </div>
+
+                <div class="notice academic">
+                    <div class="notice-header">
+                        <div class="notice-title">Semester 1-2 Examination Schedule Released</div>
+                        <span class="notice-badge badge-academic">🔵 ACADEMIC</span>
+                    </div>
+                    <div class="notice-meta">
+                        <span>📅 Posted: 21 Feb 2026</span>
+                        <span>⏰ Expires: 31 Mar 2026</span>
+                    </div>
+                    <p><strong>Exam Dates:</strong> 20-31 May 2026</p>
+                    <p>The examination timetable for M.Sc. (Sem 1-2) courses has been released. All students must check the timetable on the portal. Practical exams scheduled before theory exams. Download details from calendar.html section.</p>
+                </div>
+
+                <div class="notice academic">
+                    <div class="notice-header">
+                        <div class="notice-title">Semester 1 Results Declared</div>
+                        <span class="notice-badge badge-academic">🔵 ACADEMIC</span>
+                    </div>
+                    <div class="notice-meta">
+                        <span>📅 Posted: 20 Feb 2026</span>
+                        <span>⏰ Expires: 30 Mar 2026</span>
+                    </div>
+                    <p>Semester 1 (2025) results have been declared! Check your grades on the student portal. Grade cards will be available from 1 March onwards. For any disputes, contact department@cusb.ac.in within 10 days.</p>
+                </div>
+
+                <div class="notice academic">
+                    <div class="notice-header">
+                        <div class="notice-title">Course Registration for Electives - Open</div>
+                        <span class="notice-badge badge-academic">🔵 ACADEMIC</span>
+                    </div>
+                    <div class="notice-meta">
+                        <span>📅 Posted: 18 Feb 2026</span>
+                        <span>⏰ Expires: 20 Mar 2026</span>
+                    </div>
+                    <p><strong>Registration Period:</strong> 18 Feb - 20 Mar 2026</p>
+                    <p>M.Sc. students can now register for elective courses for Semester 3-4. Register through your student portal. Choose 2 electives from the list. Limited seats available - registration on first-come-first-served basis.</p>
+                </div>
+
+                <div class="notice event">
+                    <div class="notice-header">
+                        <div class="notice-title">Guest Lecture: "AI Ethics and Society" by Prof. Peter Smith</div>
+                        <span class="notice-badge badge-event">🟡 EVENT</span>
+                    </div>
+                    <div class="notice-meta">
+                        <span>📅 Posted: 19 Feb 2026</span>
+                        <span>⏰ Expires: 25 Mar 2026</span>
+                    </div>
+                    <p><strong>Event Date:</strong> 28 February 2026 from 3:00 PM - 4:30 PM</p>
+                    <p><strong>Venue:</strong> Seminar Hall, CUSB Campus</p>
+                    <p>Prof. Peter Smith from Stanford University will deliver a guest lecture on ethical implications of AI in modern society. Open to all UG/PG students. Refreshments provided. Register at: department@cusb.ac.in</p>
+                </div>
+
+                <div class="notice event">
+                    <div class="notice-header">
+                        <div class="notice-title">Tech Fest 2026 - Registration Open</div>
+                        <span class="notice-badge badge-event">🟡 EVENT</span>
+                    </div>
+                    <div class="notice-meta">
+                        <span>📅 Posted: 17 Feb 2026</span>
+                        <span>⏰ Expires: 5 Apr 2026</span>
+                    </div>
+                    <p><strong>Event Dates:</strong> 5-11 April 2026</p>
+                    <p>Annual Tech Fest starting 5 April! Registration is now open for all students. Events include: Coding Competition, Hackathon, Project Showcases, Workshops. Prize Pool: Rs. 2,00,000. Register teams at: techfest@cusb.ac.in</p>
+                </div>
+
+                <div class="notice event">
+                    <div class="notice-header">
+                        <div class="notice-title">Campus Recruitment Drive - TCS & Infosys</div>
+                        <span class="notice-badge badge-event">🟡 EVENT</span>
+                    </div>
+                    <div class="notice-meta">
+                        <span>📅 Posted: 16 Feb 2026</span>
+                        <span>⏰ Expires: 1 Apr 2026</span>
+                    </div>
+                    <p><strong>Recruitment Dates:</strong> 1-5 April 2026</p>
+                    <p>Major IT companies visiting campus! TCS (Pre-placement Training) and Infosys (Full-time positions) will conduct interviews. CTC: Rs. 6-8 LPA. Eligibility: CGPA >= 6.5. Register at placement cell.</p>
+                </div>
+
+                <div class="notice academic">
+                    <div class="notice-header">
+                        <div class="notice-title">Department Seminar - Research Methodologies</div>
+                        <span class="notice-badge badge-academic">🔵 ACADEMIC</span>
+                    </div>
+                    <div class="notice-meta">
+                        <span>📅 Posted: 15 Feb 2026</span>
+                        <span>⏰ Expires: 30 May 2026</span>
+                    </div>
+                    <p><strong>Series Starts:</strong> 1 March 2026 (Every Friday 4:00 PM)</p>
+                    <p>Monthly seminars on research methodologies, recent trends in Computer Science, and scholarly practices. Faculty and research scholars welcome. Venue: Department Seminar Hall. Certificates provided. Light refreshments.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <p>&copy; 2026 Smart Academic Portal | Central University of South Bihar</p>
+        <p>For urgent notices, contact: +91-631-2229 530 | registrar@cub.ac.in</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
